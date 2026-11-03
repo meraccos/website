@@ -148,8 +148,9 @@ body a:hover,
 
 footer {
     text-align: center;
-    font-size: calc(8px + 0.5vw);
-    min-height: 50px;
+    font-size: 12px;
+    color: #888;
+    padding: 24px 0;
 }
 
 @media (max-width: 768px) {
@@ -192,6 +193,12 @@ footer {
         margin: 3px 0;
         height: 2px;
         flex-shrink: 0;
+    }
+
+    .mobile-menu {
+        min-height: 0;
+        justify-content: flex-start;
+        gap: 20px;
     }
 
 }
