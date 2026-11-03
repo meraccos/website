@@ -177,4 +177,8 @@ footer {
         padding-right: 5px;
     }
 
+    .nav .menu-button {
+        margin-left: auto;
+    }
+
 }
