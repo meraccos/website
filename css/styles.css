@@ -247,7 +247,7 @@ li {
 
     .profile-aside {
         margin-left: 0;
-        margin-top: 8px;
+        margin-top: -8px;
         order: 1;
     }
 
