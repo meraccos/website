@@ -183,9 +183,11 @@ footer {
     .nav .menu-button {
         display: flex;
         margin-left: auto;
-        margin-right: 0;
+        margin-right: 26px;
+        transform: translateY(8px);
         padding: 0;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-end;
         width: 30px;
     }
 
