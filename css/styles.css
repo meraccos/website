@@ -254,6 +254,27 @@ li {
     .profile img {
         width: 180px;
     }
+    /* Keep contact icons compact on mobile; desktop styles are unchanged. */
+    .social-links {
+        gap: 8px;
+    }
+
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        flex: 0 0 40px;
+    }
+
+    .social-links .lucide {
+        display: block;
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        max-width: 20px;
+        min-height: 20px;
+        max-height: 20px;
+        flex: none;
+    }
     .output_box {
         max-height: calc(100vh - 450px);
     }
