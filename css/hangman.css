@@ -37,22 +37,6 @@
     margin-bottom: 12px;
 }
 
-.user_setting {
-    width: 100px;
-    height: 35px;
-    margin: 0 auto;
-    border-radius: 15px;
-    border-style:none;
-    background-color: #2b2a2a;
-    color: #BDBDBD;
-    font-size: 14px;
-    cursor: pointer;
-    text-align: center;
-    padding: 0px;
-    margin: 12px;
-    /* margin-bottom: 20px; */
-}
-
 .dt.hide_at_start {
     margin-bottom: 20px;
     margin-top: 5px;
