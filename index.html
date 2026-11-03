@@ -68,8 +68,31 @@
       }
     </script>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/css/skeleton.css" />
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/skeleton.css?v=20261103-2" />
+    <link rel="stylesheet" href="/css/styles.css?v=20261103-2" />
+    <style>
+      /* Homepage-only mobile layout; no desktop changes. */
+      @media (max-width: 768px) {
+        header nav.nav {
+          display: flex;
+          width: 100%;
+          justify-content: flex-end;
+          box-sizing: border-box;
+        }
+        header nav.nav #mobile-menu-btn {
+          display: flex;
+          margin-left: auto;
+          margin-right: 0;
+          padding: 0;
+          flex-direction: column;
+          align-items: flex-end;
+        }
+        .social-links svg.lucide {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    </style>
     <script src="/js/common.js" defer></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
@@ -168,26 +191,26 @@
           <img src="/media/meraj.jpg" alt="Meraj Mammadov" width="741" height="737" fetchpriority="high" />
           <div class="social-links" aria-label="Contact links">
             <a href="mailto:meraccos@gmail.com" aria-label="Email Meraj Mammadov">
-              <svg class="lucide" width="23" height="23" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="lucide" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#b8b6b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect width="20" height="16" x="2" y="4" rx="2" />
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
             </a>
             <a href="https://scholar.google.com/citations?user=0-BhYXMAAAAJ&amp;hl=en" aria-label="Google Scholar profile">
-              <svg class="lucide" width="23" height="23" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="lucide" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#b8b6b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0z" />
                 <path d="M22 10v6" />
                 <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
               </svg>
             </a>
             <a href="https://github.com/meraccos" aria-label="GitHub profile">
-              <svg class="lucide" width="23" height="23" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="lucide" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#b8b6b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.28-.36 6.72-1.61 6.72-7A5.4 5.4 0 0 0 19.22 4.77 5 5 0 0 0 19.13 1S17.95.65 15 2.48a13.38 13.38 0 0 0-7 0C5.05.65 3.87 1 3.87 1a5 5 0 0 0-.09 3.77A5.4 5.4 0 0 0 3 8.5c0 5.42 3.44 6.61 6.72 7A4.8 4.8 0 0 0 9 18v4" />
                 <path d="M9 18c-4.51 2-5-2-7-2" />
               </svg>
             </a>
             <a href="https://www.linkedin.com/in/meraccos" aria-label="LinkedIn profile">
-              <svg class="lucide" width="23" height="23" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="lucide" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#b8b6b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                 <rect width="4" height="12" x="2" y="9" />
                 <circle cx="4" cy="4" r="2" />
