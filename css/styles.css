@@ -12,8 +12,16 @@
     align-items: center;
 }
 
-.content.contact {
-    justify-content: center;
+.profile > .content {
+    flex: 1 1 580px;
+    max-width: 580px;
+}
+
+.profile-aside {
+    flex-shrink: 0;
+    margin-left: 64px;
+    margin-top: 20px;
+    text-align: center;
 }
 
 .problem {
@@ -21,37 +29,62 @@
     padding-left: 20px;
 }
 
-.contact a {
-    color: hsl(40, 63%, 93%);
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: #8d8b89;
+    background-color: #4e4949;
+    border-radius: 50%;
     text-decoration: none;
+    transition: transform 150ms ease, background-color 150ms ease;
 }
 
-.white-mode .contact a {
-    color: #3f1010;
+.white-mode .social-links a {
+    color: #8d8b89;
 }
 
-.contact p {
-    padding: 10px;
+.social-links a:hover,
+.social-links a:focus-visible {
+    background-color: #625c5c;
+    transform: translateY(-2px);
 }
 
-.contact i {
-    padding: 15px;
+.white-mode .social-links a:hover,
+.white-mode .social-links a:focus-visible {
+    background-color: #625c5c;
+}
+
+.social-links .lucide {
+    width: 23px;
+    height: 23px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .profile img {
-    width: 350px;
+    width: 280px;
     max-width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
-    flex-shrink: 0;
     box-sizing: border-box;
 
     border: 1px solid;
     border-color: #3f1010;
     border-radius: 50%;
     object-fit: cover;
-    margin-left: 85px;
-    margin-top: 20px;
 }
 
 .animation {
@@ -253,20 +286,19 @@ li {
       margin-top: 10px;
     }
 
-    .content.contact {
-        flex-direction: row;
-    }
-
     .problem {
         text-align:left;
         align-items: baseline;
     }
 
-    .profile img {
+    .profile-aside {
         margin-left: 0;
-        margin-top: 10px;
-        width: 200px;
-        order: 1;
+        margin-top: 24px;
+        order: 2;
+    }
+
+    .profile img {
+        width: 180px;
     }
     .output_box {
         max-height: calc(100vh - 450px);
@@ -276,7 +308,9 @@ li {
         align-items: center;
     }
     .profile .content {
+      flex: none;
+      max-width: 100%;
       margin-top: 20px;
-      order: 2;
+      order: 1;
     }
   }
