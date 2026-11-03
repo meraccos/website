@@ -13,11 +13,6 @@ body {
     padding: 0px 20px 0 20px;
 }
 
-body.white-mode {
-    background-color: hsl(40, 63%, 93%);
-    color: #6d3b3b;
-}
-
 header {
     width: 100%;
     max-width: 924px;
@@ -29,7 +24,6 @@ h1 {
     text-align: left;
     padding-top: 70px;
 }
-
 
 body a {
     text-decoration: none;
@@ -44,10 +38,6 @@ body .content a {
 body a:hover,
 .nav a:hover {
     text-decoration: underline;
-}
-
-body.white-mode a {
-    color: #6d3b3b;
 }
 
 .nav {
@@ -85,10 +75,6 @@ body.white-mode a {
     text-decoration: underline;
 }
 
-.white-mode .dropbtn {
-    color: #6d3b3b;
-}
-
 .dropdown {
     margin-top: 0;
     margin-right: 3%;
@@ -119,10 +105,6 @@ body.white-mode a {
     margin: auto;
 }
 
-.white-mode .dropdown-content{
-    background-color: #b7b2b2;
-}
-
 .dropdown a:hover {background-color: #ddd;}
 
 .show {display: block;}
@@ -141,10 +123,6 @@ body.white-mode a {
     height: 2px;
     border-radius: 20px;
     margin: 5px;
-}
-
-.white-mode .line {
-    background-color: #121212;
 }
 
 .mobile {
@@ -173,65 +151,6 @@ body.white-mode a {
     outline: 2px solid currentColor;
     outline-offset: 4px;
 }
-
-/* Dark mode toggle */
-
-.darkmode-container {
-    display: flex;
-    align-items: center;
-    color: transparent;
-}
-
-.desktop-label {
-    width: 50px;
-    height: 24px;
-    position: relative;
-    display: block;
-    background: #4e4949;
-    border-radius: 200px;
-    top: 3px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.desktop-label:after {
-    content: "";
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    background: #8d8b89;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-
-.desktop-label:active:after {
-    width: 32px;
-}
-
-.dark-mode-toggle {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-}
-
-.dark-mode-toggle:focus-visible + label {
-    outline: 2px solid currentColor;
-    outline-offset: 4px;
-}
-
-.dark-mode-toggle:checked + label {
-    background: #cdd0c3;
-}
-
-.dark-mode-toggle:checked + label:after {
-    left: 46px;
-    transform: translateX(-100%);
-    background: #6d3b3b;
-}
-
 
 footer {
     text-align: center;
@@ -264,26 +183,4 @@ footer {
         padding-right: 5px;
     }
 
-    .desktop-label, .desktop-label:after {
-        background: transparent;
-        height: auto;
-    }
-
-    .dark-mode-toggle, .dark-mode-toggle:checked + label {
-        background: transparent;
-    }
-
-    .darkmode-container {
-        color: #ffffff;
-    }
-    .white-mode .darkmode-container {
-        color: #121212;
-    }
-
-    .desktop-label {
-        justify-content: center;
-        text-align: center;
-        margin: 0px;
-        position: static;
-    }
 }

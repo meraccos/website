@@ -92,33 +92,6 @@
     margin-left: 15px;
 }
 
-.white-mode .num_of_chars_box {
-    background: hsl(46, 20%, 83%);
-    color: #6d3b3b;
-    border: none;
-}
-
-.white-mode .button {
-    background-color: hsl(46, 20%, 83%);
-    color: #6d3b3b;
-}
-
-.white-mode .user_setting {
-    background-color: hsl(46, 20%, 83%);
-    color: #6d3b3b;
-}
-
-.white-mode .button.hide_at_start {
-    background-color: hsl(46, 20%, 83%);
-    color: #6d3b3b;
-}
-
-.white-mode .letter {
-    background-color: hsl(46, 20%, 83%);
-    color: #6d3b3b;
-    border: none;
-}
-
 .game_status_and_guess {
     display: flex;
     justify-content: center;

@@ -22,11 +22,6 @@ html{
     border-radius: 20px;
 }
 
-.white-mode .box {
-    background-color: hsl(42, 20%, 83%);
-    color: #000;
-}
-
 .genres {
     display: flex;
     flex-direction: column;
@@ -92,11 +87,6 @@ html{
     color: #070707;
 }
 
-.white-mode .movie_button {
-    color: #6d3b3b;
-    background-color: hsl(46, 20%, 83%);
-}
-
 .outputs {
     width: 360px;
     height: 600px;
@@ -126,10 +116,6 @@ html{
     color: rgb(195, 133, 66);
 }
 
-.white-mode .rating {
-    color: rgb(109, 68, 24);
-}
-
 .align {
     display: flex;
     align-items: center;
@@ -137,10 +123,6 @@ html{
     width: 45px;
     padding-left: 20px;
     color: rgb(195, 133, 66);
-}
-
-.white-mode .align {
-    color: rgb(109, 68, 24);
 }
 
 .index {
