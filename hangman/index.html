@@ -17,7 +17,7 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="stylesheet" href="/css/skeleton.css?v=20261104-5" />
   <link rel="stylesheet" href="/css/styles.css?v=20261104-2" />
-  <link rel="stylesheet" href="/css/hangman.css" />
+  <link rel="stylesheet" href="/css/hangman.css?v=20261104-1" />
   <script src="/js/common.js" defer></script>
   <script src="/js/hangman.js" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;display=swap" rel="stylesheet" type="text/css" />
@@ -64,10 +64,9 @@
       <br />
       <section class="content">
         <p>
-          Here you can play a simple information theoretic Hangman game. You can choose to play as a guider or as a
-          guesser. If guider, pick a word, press the guess button and guide the agent to find it by pressing on the
-          matching letter locations (skip if there is no match). If guesser, try to guess the word by entering characters
-          one-by-one and pressing the check button.
+          Play an information-theoretic Hangman game against an agent that tries to guess your word.
+          Choose a word, set its length, and start the game. Press Guess to see the agent's next letter,
+          then select every matching position (or none if the letter is absent) before pressing Guess again.
         </p>
 
       </section>
@@ -77,15 +76,6 @@
           <div class="setting">
             <p>Number of characters: </p>
             <input type="text" inputmode="numeric" class="num_of_chars_box" id="num_of_chars_box" placeholder="7" />
-          </div>
-
-          <div class="setting">
-            <p>You play as: </p>
-            <!-- select from two-->
-            <select class="user_setting" id="user_setting">
-              <option value="guider">Guider</option>
-              <option value="guesser">Guesser</option>
-            </select>
           </div>
 
           <div class="setting">
