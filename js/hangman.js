@@ -1,12 +1,3 @@
-// document.getElementById('user_setting').addEventListener('change', function() {
-//     var agentSetting = document.getElementById('agent_setting');
-//     if (this.value === 'guider') {
-//       agentSetting.style.display = 'block';
-//     } else {
-//       agentSetting.style.display = 'none';
-//     }
-//   });
-
 var numOfChars = 7;
 var cost = 0;
 var lastGuess = '_';
