@@ -184,6 +184,13 @@ footer {
         margin-right: 0;
         padding: 0;
         align-items: center;
+        width: 30px;
+    }
+
+    .nav .menu-button .line {
+        margin: 2px 0;
+        height: 2px;
+        flex-shrink: 0;
     }
 
 }
