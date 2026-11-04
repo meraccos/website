@@ -69,6 +69,7 @@
 
 .affiliation a{color:inherit}
 .method-objective{margin:18px 0;padding:10px 0;overflow-x:auto;font-size:clamp(14px,3vw,20px)}.method-objective math{font-family:"STIX Two Math",math;width:max-content;min-width:100%;margin:0}.method-objective mi{font-family:"STIX Two Math",math}
+.citation pre{white-space:pre-wrap;overflow-wrap:anywhere}
 .results-closing{margin-top:28px}
 .paper-tagline{margin:24px auto 0;text-align:center;text-wrap:balance;font-size:20px;line-height:1.4}@media(max-width:700px){.paper-tagline{font-size:18px}}
 </style>
@@ -98,10 +99,8 @@
 <section class="content-section" id="transfer"><h2>Zero-shot Task Transfer</h2><p>After learning the representation, we freeze the encoders and train a new policy using only teacher observations on a second task. The policy is then paired with the frozen student encoder, without additional student data during adaptation. On modified environments, these policies match or surpass Student RL and perform on par with RAIL trained directly on the new task.</p></section>
 -->
 <section class="content-section citation" id="citation"><div class="citation-heading"><h2>BibTeX</h2><button id="copy-citation" type="button">Copy</button></div><pre><code id="bibtex">@inproceedings{mammadov2026rail,
-  title     = {RAIL: Representation-Aligned Imitation Learning
-               for Student-Compatible Teacher Policies},
-  author    = {Mammadov, Meraj and
-               Zuidberg Dos Martires, Pedro and Stork, Johannes A.},
+  title     = {RAIL: Representation-Aligned Imitation Learning for Student-Compatible Teacher Policies},
+  author    = {Mammadov, Meraj and Zuidberg Dos Martires, Pedro and Stork, Johannes A.},
   booktitle = {Advances in Neural Information Processing Systems},
   year      = {2026}
 }</code></pre><p id="copy-status" class="note" role="status" aria-live="polite"></p></section>
