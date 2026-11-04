@@ -1,3 +1,7 @@
+document.querySelectorAll('[data-copyright-year]').forEach((element) => {
+    element.textContent = String(new Date().getFullYear());
+});
+
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 const projectsButton = document.getElementById('dropbtn');
