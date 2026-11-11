@@ -421,6 +421,12 @@ li {
     margin-top: 44px;
 }
 
+@media (max-width: 768px) {
+    body > main:not(.homepage) {
+        margin-top: 20px;
+    }
+}
+
 .side-projects > .content {
     text-align: left;
     line-height: 1.6;

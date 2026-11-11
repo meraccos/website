@@ -166,6 +166,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --site-top-space: 0px;
+    }
+
     h1 {
         font-size: 35px;
         padding-top: 50px;
