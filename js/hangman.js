@@ -44,7 +44,6 @@ async function startGame() {
     var countsFileName = `/hangman/vocab/counts_${numOfChars}.txt`;
 
     // initialize the words and counts array
-    initVocab(wordsFileName, countsFileName);
     [wordsArray, countsArray] = await initVocab(wordsFileName, countsFileName);
 
     matchingWords = wordsArray;
