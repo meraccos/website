@@ -1,3 +1,14 @@
+/* Shared portfolio layout: adjust these values for every portfolio page. */
+:root {
+    --site-content-width: 924px;
+    --site-top-space: 48px;
+}
+
+/* Reserve scrollbar space so navigation does not shift between pages. */
+html {
+    scrollbar-gutter: stable;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -8,9 +19,44 @@ body {
     color: #BDBDBD;
     font-family: 'Lato', sans-serif;
     
-    max-width: 924px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: calc(var(--site-content-width) + 40px);
     margin: 0 auto;
     padding: 0px 20px 0 20px;
+}
+
+body > header {
+    padding-top: var(--site-top-space);
+}
+
+body > header,
+body > main,
+body > footer {
+    min-width: 0;
+}
+
+/* Keep the header position consistent regardless of page length. */
+@media (min-width: 769px) {
+    body {
+        grid-template-rows: 70px auto auto minmax(32px, 1fr) auto;
+    }
+
+    body::before,
+    body::after {
+        content: "";
+    }
+
+    body::before { grid-row: 1; }
+    body > header { grid-row: 2; }
+    body > main { grid-row: 3; }
+    body::after { grid-row: 4; }
+    body > footer { grid-row: 5; }
+
+    header h1 {
+        margin-top: 0;
+        padding-top: 0;
+    }
 }
 
 h1 {
@@ -50,58 +96,6 @@ body a:hover,
 }
 
 
-
-/* Here on is the styles for the projects navigation menu */
-
-.dropbtn {
-    background-color: transparent;
-    color: #636363;
-    border: none;
-    cursor: pointer;
-    margin: auto;
-    padding: 0;
-    position:relative;
-    font-size: 24px;
-    height: 29px;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-    text-decoration: underline;
-}
-
-.dropdown {
-    margin-top: 0;
-    margin-right: 3%;
-    position: relative;
-    display: inline-block;
-    font-size: 24px;
-    height: 29px;
-}
-
-.dropdown-content {
-    display: none;
-    position:absolute;
-    background-color: #636363;
-    min-width: 120px;
-    left: 50%;
-    transform: translateX(-50%);
-    overflow: auto;
-    z-index: 1;
-    border-radius: 0px 0px 10px 10px;
-
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
 
 .menu-button {
     display: flex;
@@ -184,23 +178,77 @@ footer {
         display: flex;
         margin-left: auto;
         margin-right: 0;
-        transform: translateY(12px);
         padding: 0;
         flex-direction: column;
-        align-items: flex-end;
-        width: 30px;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        position: relative;
+        border-radius: 8px;
     }
 
     .nav .menu-button .line {
-        margin: 3px 0;
+        margin: 0;
         height: 2px;
         flex-shrink: 0;
+        position: absolute;
+        transition: transform 160ms ease;
+    }
+
+    .nav .menu-button .line:first-child {
+        transform: translateY(-4px);
+    }
+
+    .nav .menu-button .line:last-child {
+        transform: translateY(4px);
+    }
+
+    .nav .menu-button[aria-expanded="true"] .line:first-child {
+        transform: rotate(45deg);
+    }
+
+    .nav .menu-button[aria-expanded="true"] .line:last-child {
+        width: 26px !important;
+        transform: rotate(-45deg);
+    }
+
+    .nav .menu-button:hover,
+    .nav .menu-button[aria-expanded="true"] {
+        background: #222;
     }
 
     .mobile-menu {
         min-height: 0;
         justify-content: flex-start;
+        align-items: center;
         gap: 20px;
+        margin-top: 10px;
+        padding: 3vh 0 32px;
+        text-align: center;
+        font-size: 21px;
     }
 
+    .mobile-menu a {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        min-width: 140px;
+        padding: 10px 20px;
+        color: #bdbdbd;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a[aria-current="page"] {
+        color: #fff;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav .menu-button .line {
+        transition: none;
+    }
 }

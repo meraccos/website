@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A collection of side projects and small experiments by Meraj Mammadov." />
+    <meta property="og:title" content="Projects | Meraj Mammadov" />
+    <meta property="og:description" content="A collection of side projects and small experiments by Meraj Mammadov." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://merajmammadov.com/projects/" />
+    <meta property="og:image" content="https://merajmammadov.com/media/meraj.jpg" />
+    <meta property="og:site_name" content="Meraj Mammadov" />
+    <title>Projects | Meraj Mammadov</title>
+    <link rel="canonical" href="https://merajmammadov.com/projects/" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/css/skeleton.css?v=20261111-4" />
+    <link rel="stylesheet" href="/css/styles.css?v=20261111-2" />
+    <script src="/js/common.js?v=20261111-3" defer></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/">Meraj Mammadov</a></h1>
+      <nav class="nav" aria-label="Main navigation">
+
+        <a href="/" class="desktop">home</a>
+        <a href="/cv.pdf" class="desktop">cv</a>
+
+        <a href="/projects/" class="desktop" aria-current="page">projects</a>
+
+        <a href="/enigma/" class="desktop">enigma</a>
+        <button id="mobile-menu-btn" class="menu-button mobile" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <div class="line" style="width: 26px;"></div>
+          <div class="line" style="width: 20px;"></div>
+        </button>
+
+      </nav>
+
+      <div class="mobile-menu" id="mobile-menu" hidden>
+        <a href="/" class="mobile">home</a>
+        <a href="/cv.pdf" class="mobile">cv</a>
+        <a href="/projects/" class="mobile" aria-current="page">projects</a>
+        <a href="/enigma/" class="mobile">enigma</a>
+      </div>
+    </header>
+
+    <main class="side-projects">
+      <div class="section-heading">
+        <h2>Projects</h2>
+      </div>
+      <p class="content">
+        Here are some small projects and experiments that I have built over the years,
+        mostly for fun or while exploring new ideas and tools.
+      </p>
+
+      <div class="project-list">
+        <article class="project-entry">
+          <div class="project-entry-heading">
+            <h3><a href="/sdr/">Weather Satellite SDR</a></h3>
+            <time datetime="2024">2024</time>
+          </div>
+          <p>Building antennas and using software-defined radio to receive images from a weather satellite.</p>
+        </article>
+
+        <article class="project-entry">
+          <div class="project-entry-heading">
+            <h3><a href="/movie/">Movie Recommender</a></h3>
+            <time datetime="2023">2023</time>
+          </div>
+          <p>An interactive movie recommender that uses language-model embeddings to match genre preferences.</p>
+        </article>
+
+        <article class="project-entry">
+          <div class="project-entry-heading">
+            <h3><a href="/hangman/">Information-Theoretic Hangman</a></h3>
+            <time datetime="2023">2023</time>
+          </div>
+          <p>A Hangman game that uses information theory to choose which letter to guess next.</p>
+        </article>
+
+        <article class="project-entry">
+          <div class="project-entry-heading">
+            <h3><a href="/merajpt/">Neural Language Models</a></h3>
+            <time datetime="2023">2023</time>
+          </div>
+          <p>Interactive bigram and LSTM models trained on works by Nizami Ganjavi and William Shakespeare.</p>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; <span data-copyright-year>2026</span> Meraj Mammadov</p>
+    </footer>
+  </body>
+</html>

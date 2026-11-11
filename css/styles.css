@@ -1,9 +1,14 @@
 .content {
     align-items: center;
     text-align: justify;
-    max-width: 1200px;
+    max-width: var(--site-content-width);
     font-size: 18px;
     margin-top: 20px;
+}
+
+main img {
+    max-width: 100%;
+    height: auto;
 }
 
 .profile {
@@ -366,3 +371,101 @@ li {
         font-size: 13px;
     }
   }
+
+/* Project archive: publication-style rows with a short description. */
+.side-projects,
+.enigma-page {
+    margin-top: 44px;
+}
+
+.side-projects > .content {
+    text-align: left;
+    line-height: 1.6;
+}
+
+.enigma-page > .problem {
+    margin: 32px 0 0;
+    border-top: 1px solid #292727;
+    padding: 0;
+    list-style: none;
+    counter-reset: enigma-problem;
+    text-align: left;
+    line-height: 1.7;
+}
+
+.enigma-page > .problem > li {
+    position: relative;
+    counter-increment: enigma-problem;
+    padding: 24px 0 24px 52px;
+    border-bottom: 1px solid #292727;
+}
+
+.enigma-page > .problem > li::before {
+    content: counter(enigma-problem, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 28px;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.7;
+    font-variant-numeric: tabular-nums;
+}
+
+.enigma-page > #references {
+    margin-top: 32px;
+    color: #999;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+    .enigma-page > .problem > li {
+        padding-left: 38px;
+    }
+}
+
+.project-list {
+    margin-top: 28px;
+}
+
+.project-entry {
+    padding: 20px 0;
+    border-bottom: 1px solid #292727;
+}
+
+.project-entry-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.project-entry-heading h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+.project-entry-heading a {
+    color: #d5d5d5;
+}
+
+.project-entry-heading time {
+    flex: none;
+    color: #b5b5b5;
+    font-variant-numeric: tabular-nums;
+}
+
+.project-entry > p {
+    margin: 6px 0 0;
+    color: #999;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .project-entry-heading {
+        gap: 14px;
+    }
+}
