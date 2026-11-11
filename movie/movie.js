@@ -28,34 +28,71 @@ for (let i = 0; i < sliders.length; i++) {
     };
 }
 
-// Function for reading the movie names
-async function readMovieNames() {
-    const response = await fetch('names.txt');
-    const data = await response.text();
-    const lines = data.split('\n');
-    return lines;
+const movieButton = document.getElementById('movie_button');
+const movieStatus = document.getElementById('movie-status');
+const movieResults = document.getElementById('outputs-box');
+const resourcePromises = new Map();
+let resourcesReady = false;
+let recommendationRunning = false;
+
+// Cache each resource independently, retaining successful loads if another fails.
+function cachedResource(key, loader) {
+    if (!resourcePromises.has(key)) {
+        resourcePromises.set(key, Promise.resolve().then(loader).catch((error) => {
+            resourcePromises.delete(key);
+            throw error;
+        }));
+    }
+    return resourcePromises.get(key);
 }
 
-// Function for reading the movie ratings
-async function readMovieRatings() {
-    const response = await fetch('ratings.txt');
-    const data = await response.text();
-    const lines = data.split('\n');
-    return lines;
+async function readMovieData(path) {
+    const response = await fetch(path);
+    if (!response.ok) throw new Error(`Could not load ${path}: ${response.status}`);
+    return (await response.text()).split('\n');
 }
+
+function loadMovieResources() {
+    return Promise.all([
+        cachedResource('names', () => readMovieData('/movie/names.txt')),
+        cachedResource('ratings', () => readMovieData('/movie/ratings.txt')),
+        cachedResource('session', () => ort.InferenceSession.create('/movie/model.onnx')),
+    ]).then((resources) => {
+        resourcesReady = true;
+        return resources;
+    });
+}
+
+// Start while the visitor is choosing their genre preferences.
+movieStatus.textContent = 'Loading recommender… You can adjust the sliders meanwhile.';
+loadMovieResources().then(() => {
+    if (!recommendationRunning) movieStatus.textContent = '';
+}).catch((error) => {
+    if (!recommendationRunning) {
+        movieStatus.textContent = 'Could not finish loading. Select Recommend to retry.';
+    }
+    console.error('Movie preload failed:', error);
+});
 
 // main things going on here
 async function recommend() {
+    if (recommendationRunning) return;
+    recommendationRunning = true;
+    movieButton.disabled = true;
+    movieButton.textContent = resourcesReady ? 'Finding movies…' : 'Loading…';
+    movieStatus.textContent = resourcesReady ? 'Finding recommendations…' : 'Loading the model and movie data…';
+    movieResults.setAttribute('aria-busy', 'true');
+    // Keep this request tied to the preferences at the time of the click.
+    const preferences = Float32Array.from(ValuesArray);
     try {
-        // Read the movie names file
-        const movie_names = await readMovieNames();
-        const movie_ratings = await readMovieRatings();
+        const [movie_names, movie_ratings, session] = await loadMovieResources();
+        movieButton.textContent = 'Finding movies…';
+        movieStatus.textContent = 'Finding recommendations…';
 
         // Infer from the model 
-        var data = Float32Array.from(ValuesArray);
+        var data = preferences;
         const tensor = new ort.Tensor("float32", data, [18]); 
         
-        const session = await ort.InferenceSession.create('/movie/model.onnx');
         const feeds = {"onnx::MatMul_0": tensor};
         const run_out = await session.run(feeds);
         const output = run_out[5]['data']
@@ -77,7 +114,14 @@ async function recommend() {
             aligns[i+1].innerHTML = (output[top10Indices[i]]).toFixed(2);
         }
 
+        movieStatus.textContent = '';
     } catch (error) {
+        movieStatus.textContent = 'Could not get recommendations. Select Recommend to try again.';
         console.error('Error:', error);
+    } finally {
+        recommendationRunning = false;
+        movieButton.disabled = false;
+        movieButton.textContent = 'Recommend';
+        movieResults.setAttribute('aria-busy', 'false');
     }
 }
