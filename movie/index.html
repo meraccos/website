@@ -16,9 +16,9 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="stylesheet" href="/css/skeleton.css?v=20261111-4" />
   <link rel="stylesheet" href="/css/styles.css?v=20261111-2" />
-  <link rel="stylesheet" href="/movie/movie.css" />
+  <link rel="stylesheet" href="/movie/movie.css?v=20261111-14" />
   <script src="/js/common.js?v=20261111-3" defer></script>
-  <script src="/movie/movie.js" defer></script>
+  <script src="/movie/movie.js?v=20261111-1" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;display=swap" rel="stylesheet" type="text/css" />
 </head>
@@ -141,12 +141,12 @@
       </div>
 
       <div class="box" id="outputs-box">
-        <div class="outputs">
+        <div class="outputs" aria-live="polite" aria-label="Movie recommendations">
           <div class="outbox">
             <p class="index" id="idx0" style="margin: 0px;"></p>
-            <p class="movie_name" id="o0" style="margin: 0px;"></p>
-            <p class="align" id="a0" style="margin: 0px;"></p>
-            <p class="rating" id="i0" style="margin: 0px;"></p>
+            <p class="movie_name" id="o0" style="margin: 0px;">Movie name</p>
+            <p class="align" id="a0" style="margin: 0px;">Match</p>
+            <p class="rating" id="i0" style="margin: 0px;">Rating</p>
           </div>
           <div class="outbox">
             <p class="index" id="idx1"></p>
@@ -210,11 +210,11 @@
           </div>
         </div>
       </div>
+    </div>
     </main>
     <footer>
       <p>&copy; <span data-copyright-year>2026</span> Meraj Mammadov</p>
     </footer>
-  </div>
 </body>
 
 </html>

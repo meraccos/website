@@ -8,11 +8,21 @@ var values = document.querySelectorAll('.value')
 var ValuesArray = []
 
 // fill value elements with slider values and array with the values
+function updateSliderFill(slider) {
+    const minimum = Number(slider.min || 0);
+    const maximum = Number(slider.max || 100);
+    const percent = ((Number(slider.value) - minimum) / (maximum - minimum)) * 100;
+    slider.style.setProperty('--slider-fill', percent + '%');
+}
+
 for (let i = 0; i < sliders.length; i++) {
+    updateSliderFill(sliders[i]);
+    sliders[i].setAttribute('aria-label', document.querySelectorAll('.genre')[i].textContent.trim());
     values[i].innerHTML = (sliders[i].value / 100).toFixed(2);
     ValuesArray.push(sliders[i].value / 100);
 
     sliders[i].oninput = function() {
+        updateSliderFill(this);
         values[i].innerHTML = (this.value / 100).toFixed(2);
         ValuesArray[i] = sliders[i].value / 100;
     };

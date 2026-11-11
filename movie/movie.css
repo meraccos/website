@@ -1,159 +1,222 @@
-html{
-    height: 100%;
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
-}
-
 .movie_container {
-    padding-top: 30px;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    grid-template-areas: "inputs outputs" "button outputs";
+    gap: 16px 28px;
+    align-items: start;
+    margin-top: 30px;
 }
 
-.box {
-    display: flex;
+.movie_container .box {
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 20px;
+    background: #1b1b1b;
+    border: 1px solid #333;
+    border-radius: 8px;
+}
+
+#inputs-box {
+    grid-area: inputs;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) 4ch;
+    gap: 16px;
+}
+
+.genres,
+.sliders,
+.values {
+    display: grid;
+    grid-template-rows: repeat(18, 36px);
     align-items: center;
-    justify-content: center;
-    background-color: #2b2a2a;
-    color: #BDBDBD;
-    width: 400px;
-    height: 660px;
-    border-radius: 20px;
-}
-
-.genres {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 620px;
-    padding-left: 20px;
+    min-width: 0;
 }
 
 .genre {
-    margin: 0px;
-}
-
-.sliders {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 620px;
-    padding-left: 35px;
+    margin: 0;
+    font-size: 15px;
 }
 
 .slider {
-    width: 180px;
-    margin: 0px;
+    --slider-fill: 0%;
+    --slider-color: #7daee8;
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    height: 36px;
+    background: transparent;
+    cursor: pointer;
 }
 
-.values {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 620px;
-    padding-left: 25px;
-    padding-right: 20px;
+.slider::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, var(--slider-color) var(--slider-fill), #444 var(--slider-fill));
+}
+
+.slider::-moz-range-track {
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, var(--slider-color) var(--slider-fill), #444 var(--slider-fill));
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    margin-top: -7px;
+    border: 2px solid #1b1b1b;
+    border-radius: 50%;
+    background: var(--slider-color);
+}
+
+.slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #1b1b1b;
+    border-radius: 50%;
+    background: var(--slider-color);
+}
+
+.value {
+    text-align: right;
+    color: #999;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
 }
 
 .middle {
-    display: flex;
-    align-items: center;
-    margin: 50px;
-    margin-left: 30px;
-    margin-right: 30px;
+    grid-area: button;
 }
 
 .movie_button {
-    width: 140px;
-    height: 80px;
-    margin: 0 auto;
-    border-radius: 15px;
-    border-style:none;
-    background-color: #2b2a2a;
-    color: #BDBDBD;
-    font-size: 18px;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 20px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: #292929;
+    color: #e5e5e5;
+    font: inherit;
     cursor: pointer;
-    text-align: center;
-    padding: 0px;
+}
+
+.movie_button:hover {
+    background: #333;
+    border-color: #777;
 }
 
 .movie_button:active {
-    transform: scale(0.95);
-}  
+    background: #222;
+}
 
-.movie_button:hover {
-    background-color: #95999d;
-    color: #070707;
+#outputs-box {
+    grid-area: outputs;
+    padding: 0 20px;
 }
 
 .outputs {
-    width: 360px;
-    height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    min-width: 0;
 }
 
 .outbox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 2.5ch minmax(0, 1fr) 5ch 5ch;
+    gap: 12px;
+    align-items: baseline;
+    padding: 20px 0;
+    border-bottom: 1px solid #292929;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.outbox:first-child {
+    color: #999;
+    font-size: 13px;
+    font-weight: 400;
+    border-bottom-color: #444;
+}
+
+.outbox:first-child b {
+    font-weight: 400;
+}
+
+.outbox:last-child {
+    border-bottom: 0;
+}
+
+.outbox:not(:first-child):has(.movie_name:empty) {
+    display: none;
+}
+
+.outbox p {
+    min-width: 0;
+    margin: 0;
 }
 
 .movie_name {
-    width: 200px;
-    margin: auto;
+    overflow-wrap: anywhere;
+    color: #d5d5d5;
 }
 
-.rating {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 55px;
-    padding-left: 15px;
-    color: rgb(195, 133, 66);
+.outbox:first-child .movie_name {
+    color: #999;
 }
 
+.rating,
 .align {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    padding-left: 20px;
-    color: rgb(195, 133, 66);
+    text-align: right;
+    color: #bdbdbd;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
 }
 
 .index {
-    padding-right: 5px;
-    width: 20px;
+    color: #777;
+    font-variant-numeric: tabular-nums;
+}
+
+.outputs:not(:has(.outbox:nth-child(2) .movie_name:not(:empty)))::after {
+    content: "Choose your genre preferences, then select Recommend.";
+    display: block;
+    padding: 24px 0;
+    color: #999;
+    font-size: 15px;
+    line-height: 1.6;
 }
 
 @media (max-width: 768px) {
-    html {
-        height:auto;
-    }
     .movie_container {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "inputs" "button" "outputs";
+        gap: 16px;
     }
-    .box {
-        width: 350px;        
+
+    #inputs-box {
+        gap: 12px;
+        padding: 16px;
     }
+
+    .genres,
+    .sliders,
+    .values {
+        grid-template-rows: repeat(18, 44px);
+    }
+
     .slider {
-        width: 140px;
+        height: 44px;
     }
-    .outputs {
-        width: 310px;
+
+    #outputs-box {
+        padding: 0 16px;
     }
+
     .outbox {
-        width: 310px;
-    }
-    .rating {
-        padding-left: 10px;
-    }
-    .align {
-        padding-left: 8px;
+        gap: 8px;
+        font-size: 14px;
     }
 }
