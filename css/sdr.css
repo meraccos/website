@@ -1,22 +1,40 @@
-.sdr-image {
+.sdr-article {
+    margin-top: 44px;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.sdr-article > p {
+    margin: 24px 0;
+    text-align: justify;
+}
+
+.sdr-article > figure {
+    width: 100%;
+    max-width: 480px;
+    margin: 28px auto 36px;
+}
+
+.sdr-article > .sdr-portrait {
+    max-width: 360px;
+}
+
+.sdr-article > .sdr-result {
+    max-width: 560px;
+}
+
+.sdr-article img {
     display: block;
-    margin: 0 auto;
-    justify-content: center;
-    width: 40%;
+    width: 100%;
     height: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    object-fit: contain;
-    border-radius: 12px;
 }
 
 @media (max-width: 768px) {
-    .sdr-image {
-        width: 80%;
+    .sdr-article {
+        font-size: 17px;
     }
 
-    .content {
-        text-align:justify;
-        font-size: 16px;
-      }
+    .sdr-article > p {
+        text-align: left;
+    }
 }

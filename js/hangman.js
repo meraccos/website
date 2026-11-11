@@ -29,8 +29,9 @@ async function startGame() {
     // show all the letter_idx for idx=1 to numOfChars
     for (var i = 1; i <= numOfChars; i++) {
         var letterIdx = document.getElementById('letter' + i);
-        letterIdx.style.display = 'inline';
+        letterIdx.style.display = 'inline-flex';
         letterIdx.innerHTML = '_';
+        letterIdx.setAttribute('aria-pressed', 'false');
     }
 
     // hide all the letter_idx for idx=numOfChars+1 to 15
@@ -53,11 +54,10 @@ async function startGame() {
                           'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
                           'u', 'v', 'w', 'x', 'y', 'z'];
 
-    // get all the elements with class "hide_at_start" and display them
-    var elements = document.getElementsByClassName('hide_at_start');
-    for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = 'inline';
-    }
+    document.querySelector('.hangman').classList.add('is-playing');
+    document.getElementById('start-button').textContent = 'Restart';
+    document.getElementById('guessed-letter').textContent = '_';
+    document.getElementById('entropy').textContent = '0';
 
     // init the vars
     cost = 0;
@@ -132,8 +132,8 @@ function guessNext() {
     }
 
     // log the guess
-    var guess = document.getElementById('guess');
-    guess.innerHTML = 'Guess: ' + nextGuess;
+    var guess = document.getElementById('guessed-letter');
+    guess.textContent = nextGuess;
     lastGuess = nextGuess;
 
     // log the cost
@@ -235,9 +235,11 @@ function replaceLetter(idx) {
     // if the letter is guessed and not equal to the last guess, return
     if (letterIdx.innerHTML !== '_') {
         letterIdx.innerHTML = "_";
+        letterIdx.setAttribute('aria-pressed', 'false');
         return;
     }
     letterIdx.innerHTML = lastGuess;
+    letterIdx.setAttribute('aria-pressed', String(lastGuess !== '_'));
 }
 
 function getCurrentState() {

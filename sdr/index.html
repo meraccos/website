@@ -13,9 +13,9 @@
     <title>Weather Satellite SDR Project | Meraj Mammadov</title>
     <link rel="canonical" href="https://merajmammadov.com/sdr/" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/css/skeleton.css?v=20261111-4" />
-    <link rel="stylesheet" href="/css/styles.css?v=20261111-2" />
-    <link rel="stylesheet" href="/css/sdr.css" />
+    <link rel="stylesheet" href="/css/skeleton.css?v=20261111-19" />
+    <link rel="stylesheet" href="/css/styles.css?v=20261111-18" />
+    <link rel="stylesheet" href="/css/sdr.css?v=20261111-2" />
     <script src="/js/common.js?v=20261111-3" defer></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;display=swap"
@@ -50,54 +50,34 @@
       </div>
     </header>
 
-    <main>
-      <br />
-      <section class="content">
-        <p>
-          I recently came across the Software Defined Radio (SDR) community. It turns out 
-          that you can use a small USB dongle to capture and decode signals from a wide range of
-          radio frequencies. Sure you can do boring things like listening to FM radio or tracking airplanes, but you can also
-          capture cool images of the Earth from weather satellites! Korea happens to have a geostationary weather satellite
-          GEO-KOMPSAT 2A (GK-2A) near me that actively sends data to the ground, so I decided to give it a try. The weather satellites
-          usually work at very high frequencies with very weak signals, so it is a challenging task to capture them properly without specialized tools. This short
-          post walks you through my setup and the process of capturing the images. Feel free to reach out to me for more technical details.
-        </p>
-      </section>
+    <main class="sdr-article">
+      <div class="section-heading">
+        <h2>Weather satellite reception</h2>
+      </div>
 
+      <p>I recently came across software-defined radio (SDR): with a small USB receiver and some software, you can listen to all sorts of radio signals. What caught my attention was the possibility of receiving images directly from weather satellites. Korea’s GEO-KOMPSAT 2A (GK-2A) is visible from where I live, so I decided to give it a try.</p>
 
-      <section class="content">
-        Here is the first setup that I tried, a simple dipole antenna on a tripod with
-        an aluminum dish as a reflector. It quickly turned out that both of them were too weak
-        to capture the weak signals from the satellite at the required frequency (~1.7 GHz). 
-      </section>
-      <img src="/media/sdr-dipole.jpg" alt="First satellite receiver: a dipole antenna on a tripod with an aluminum dish" class="sdr-image" width="1600" height="1200" loading="lazy" decoding="async">
+      <p>The first setup is a dipole antenna on a tripod, with an aluminum dish as a reflector. Simple enough to put together, but apparently not enough to receive the satellite’s weak signal at around 1.7 GHz. So far, nothing.</p>
+      <figure>
+        <img src="/media/sdr-dipole.jpg" alt="Dipole antenna on a tripod with an aluminum dish reflector" width="1600" height="1200" loading="lazy" decoding="async" />
+      </figure>
 
-      <section class="content">
-        To improve the reception, I built this Yagi-Uda antenna with dimensions specific 
-        to the frequency of the satellite signals. The signal strength was improved, but
-        the antenna alone has a very narrow beamwidth and requires a wider reflector.
-      </section>
-      <img src="/media/sdr-yagi.jpg" alt="Homemade Yagi-Uda antenna for receiving satellite signals" class="sdr-image" width="1600" height="1213" loading="lazy" decoding="async">
+      <p>Next comes a homemade Yagi-Uda antenna, with dimensions chosen for the satellite’s transmission frequency. The signal is better this time, which is encouraging, but it looks like I need a larger reflector.</p>
+      <figure>
+        <img src="/media/sdr-yagi.png" alt="Homemade Yagi-Uda antenna" width="1600" height="1213" loading="lazy" decoding="async" />
+      </figure>
 
-      <section class="content">
-        So, I built a bigger reflector out of an old umbrella and some aluminum foil. Although this 
-        is the design that finally seemed to work, I still had to spend some frustrating hours with no signs of life. The setup seems to be 
-        too sensitive to small changes in the antenna's alignment.
-      </section>
-      <img src="/media/sdr-umbrella.jpg" alt="Aluminum foil umbrella reflector beside the Yagi-Uda antenna" class="sdr-image" width="1200" height="1600" loading="lazy" decoding="async">
+      <p>An old umbrella covered in aluminum foil seems worth a try. It looks a little questionable, but it finally works—after several frustrating hours of adjusting the alignment. Even a small change in direction can make the signal disappear, so once I find the right position, I am reluctant to touch anything.</p>
+      <figure class="sdr-portrait">
+        <img src="/media/sdr-umbrella.jpg" alt="Umbrella covered in aluminum foil used as a reflector" width="1200" height="1600" loading="lazy" decoding="async" />
+      </figure>
 
-      <section class="content">
-        I am lucky to live in a place with the satellite almost over my head (48.7 degrees elevation), 
-        which makes this setup enough to capture the signals. The received images are in grayscale. After some 
-        post-processing, the final image looks like this:
-      </section>
-      <img src="/media/sdr-weather-image.jpg" alt="Processed grayscale weather satellite image received with the SDR setup" class="sdr-image" width="965" height="964" loading="lazy" decoding="async">
-      
-      <section class="content">
-        The satellite sends the images about every 10 minutes. I am waiting for the weather in Korea to get colder a bit to leave my setup outside 
-        for a longer period of time and capture more images. Enough of them captured, I will try to make a timelapse video :) Feel free to reach 
-        out to me if you would like to know more about the setup or the process.
-      </section>
+      <p>Luckily, the satellite is about 49° above the horizon here, which helps with reception. The images come through in grayscale; after some post-processing, this is the result. It is quite satisfying to see an image of Earth arrive through an antenna made from things lying around.</p>
+      <figure class="sdr-result">
+        <img src="/media/sdr-weather-image.jpg" alt="Processed satellite image showing East Asia, Australia, and the Pacific" width="965" height="964" loading="lazy" decoding="async" />
+      </figure>
+
+      <p>The satellite sends images about every ten minutes. I am waiting for the weather to cool down a little so I can leave the setup outside for longer and collect enough for a timelapse. For now, I am happy to have it receiving anything at all.</p>
     </main>
     <footer>
       <p>&copy; <span data-copyright-year>2026</span> Meraj Mammadov</p>

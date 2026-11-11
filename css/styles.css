@@ -3,7 +3,16 @@
     text-align: justify;
     max-width: var(--site-content-width);
     font-size: 18px;
+    line-height: 1.6;
     margin-top: 20px;
+}
+
+.content > p {
+    margin: 0 0 20px;
+}
+
+.content > p:last-child {
+    margin-bottom: 0;
 }
 
 main img {
@@ -31,7 +40,7 @@ main img {
 
 /* Homepage refinement: calmer typography and the same rhythm as the archives. */
 .homepage .profile > .content {
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 .homepage .profile > .content p {
@@ -42,23 +51,19 @@ main img {
     margin-bottom: 0;
 }
 
-.homepage .profile > .content p:first-child {
-    color: #dedede;
-}
-
 .homepage .profile img {
-    border-color: #3b3939;
+    border-color: #3b3b3b;
 }
 
 .homepage .social-links a {
     box-sizing: border-box;
     background: transparent;
-    border: 1px solid #3b3939;
+    border: 1px solid #3b3b3b;
 }
 
 .homepage .social-links a:hover,
 .homepage .social-links a:focus-visible {
-    background: #292727;
+    background: #292929;
     border-color: #777;
 }
 
@@ -80,8 +85,8 @@ main img {
     justify-content: center;
     width: 44px;
     height: 44px;
-    color: #b8b6b4;
-    background-color: #4e4949;
+    color: #bdbdbd;
+    background-color: #494949;
     border-radius: 50%;
     text-decoration: none;
     transition: transform 150ms ease, background-color 150ms ease;
@@ -89,7 +94,7 @@ main img {
 
 .social-links a:hover,
 .social-links a:focus-visible {
-    background-color: #625c5c;
+    background-color: #626262;
     transform: translateY(-2px);
 }
 
@@ -111,7 +116,7 @@ main img {
     box-sizing: border-box;
 
     border: 1px solid;
-    border-color: #3f1010;
+    border-color: #3b3b3b;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -122,7 +127,7 @@ main img {
 }
 
 .section-heading {
-    border-bottom: 1px solid #3b3939;
+    border-bottom: 1px solid #3b3b3b;
     padding-bottom: 10px;
 }
 
@@ -141,7 +146,7 @@ main img {
 
 .publication-list li {
     padding: 17px 0;
-    border-bottom: 1px solid #292727;
+    border-bottom: 1px solid #292929;
 }
 
 .publication-heading {
@@ -158,7 +163,7 @@ main img {
 
 .publication-year {
     flex: none;
-    color: #b5b5b5;
+    color: #999;
     font-variant-numeric: tabular-nums;
 }
 
@@ -232,7 +237,7 @@ main img {
     padding: 10px;
     border:none;
     font-size: 13px;  
-    border-bottom: 1px solid #e6e4e4;
+    border-bottom: 1px solid #e5e5e5;
     border-radius:0px;
 }
 
@@ -244,11 +249,11 @@ main img {
 .output_box {
     max-width: 800px;
     margin: 0 auto;
-    background-color: #2b2a2a;
+    background-color: #2a2a2a;
     padding: 20px;
     border-radius: 20px;
     font-size: 16px;
-    border: 1px solid #403e3e;
+    border: 1px solid #404040;
 
     position: relative;
     box-sizing: border-box;
@@ -271,7 +276,7 @@ main img {
     margin: 0 auto;
     border-radius: 15px;
     border-style:none;
-    background-color: #2b2a2a;
+    background-color: #2a2a2a;
     color: #BDBDBD;
     font-size: 14px;
     cursor: pointer;
@@ -298,13 +303,13 @@ main img {
 
 
 .button:hover {
-    background-color: #95999d;
+    background-color: #999999;
     color: #070707;
 }
 
 .button:disabled {
     transform: scale(0.98);
-    background-color: #95999d;
+    background-color: #999999;
     color: #070707;
     cursor:default;
     }    
@@ -313,8 +318,8 @@ main img {
     width: 60%;
     align-items: center; 
     text-align: center; 
-    border-bottom: 1px solid #545151;
-    color: #676464;
+    border-bottom: 1px solid #545454;
+    color: #999;
     line-height: 0.1em;
     margin: 0 auto;
     padding-top: 20px;
@@ -334,8 +339,12 @@ li {
     .content {
       flex-direction: column;
       align-items: center;
-      text-align: center;
+      text-align: left;
       margin-top: 10px;
+    }
+
+    .homepage .profile > .content {
+      text-align: center;
     }
 
     .problem {
@@ -407,7 +416,8 @@ li {
 
 /* Project archive: publication-style rows with a short description. */
 .side-projects,
-.enigma-page {
+.enigma-page,
+.project-page {
     margin-top: 44px;
 }
 
@@ -418,7 +428,7 @@ li {
 
 .enigma-page > .problem {
     margin: 32px 0 0;
-    border-top: 1px solid #292727;
+    border-top: 1px solid #292929;
     padding: 0;
     list-style: none;
     counter-reset: enigma-problem;
@@ -430,7 +440,7 @@ li {
     position: relative;
     counter-increment: enigma-problem;
     padding: 24px 0 24px 52px;
-    border-bottom: 1px solid #292727;
+    border-bottom: 1px solid #292929;
 }
 
 .enigma-page > .problem > li::before {
@@ -457,13 +467,20 @@ li {
     }
 }
 
+.project-page > .section-heading h2,
+.sdr-article > .section-heading h2 {
+    font-size: 21px;
+    font-weight: 400;
+    color: #e5e5e5;
+}
+
 .project-list {
     margin-top: 28px;
 }
 
 .project-entry {
     padding: 20px 0;
-    border-bottom: 1px solid #292727;
+    border-bottom: 1px solid #292929;
 }
 
 .project-entry-heading {
@@ -486,7 +503,7 @@ li {
 
 .project-entry-heading time {
     flex: none;
-    color: #b5b5b5;
+    color: #999;
     font-variant-numeric: tabular-nums;
 }
 

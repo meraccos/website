@@ -15,11 +15,11 @@
     <link rel="canonical" href="https://merajmammadov.com/hangman/" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="/css/skeleton.css?v=20261111-4" />
-  <link rel="stylesheet" href="/css/styles.css?v=20261111-2" />
-  <link rel="stylesheet" href="/css/hangman.css?v=20261104-1" />
+  <link rel="stylesheet" href="/css/skeleton.css?v=20261111-19" />
+  <link rel="stylesheet" href="/css/styles.css?v=20261111-18" />
+  <link rel="stylesheet" href="/css/hangman.css?v=20261111-16" />
   <script src="/js/common.js?v=20261111-3" defer></script>
-  <script src="/js/hangman.js" defer></script>
+  <script src="/js/hangman.js?v=20261111-2" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;display=swap" rel="stylesheet" type="text/css" />
 </head>
   <body>
@@ -48,22 +48,24 @@
       </div>
     </header>
 
-    <main>
-      <br />
+    <main class="project-page">
+      <div class="section-heading">
+        <h2>Information-Theoretic Hangman</h2>
+      </div>
       <section class="content">
         <p>
-          Play an information-theoretic Hangman game against an agent that tries to guess your word.
-          Choose a word, set its length, and start the game. Press Guess to see the agent's next letter,
-          then select every matching position (or none if the letter is absent) before pressing Guess again.
+          A Hangman agent that uses information theory to choose which letter to guess next.
         </p>
 
       </section>
       <div class="hangman">
-        <p class="dt upper" id="dt"><span> Settings</span></p>
         <div class="settings">
-          <div class="setting">
-            <p>Number of characters: </p>
-            <input type="text" inputmode="numeric" class="num_of_chars_box" id="num_of_chars_box" placeholder="7" />
+          <div class="setup-copy">
+            <h3 class="game-label" id="dt">Think of a word with 4–15 letters and keep it to yourself.</h3>
+            <div class="setting">
+              <label for="num_of_chars_box">Word length</label>
+              <input type="number" min="4" max="15" step="1" inputmode="numeric" aria-describedby="dt" class="num_of_chars_box" id="num_of_chars_box" value="7" />
+            </div>
           </div>
 
           <div class="setting">
@@ -71,44 +73,44 @@
           </div>
         </div>
 
-        <p class="dt hide_at_start" id="dt2"><span> Display</span></p>
+        <h3 class="game-label hide_at_start" id="dt2">Select the matching positions</h3>
+        <p class="game-hint hide_at_start">Press Next guess, then select every matching position. If the letter is absent, select none. Press Next guess again to continue.</p>
 
         <div class="display hide_at_start">
-          <button class="letter" id="letter1" onclick="replaceLetter('1')">_</button>
-          <button class="letter" id="letter2" onclick="replaceLetter('2')">_</button>
-          <button class="letter" id="letter3" onclick="replaceLetter('3')">_</button>
-          <button class="letter" id="letter4" onclick="replaceLetter('4')">_</button>
-          <button class="letter" id="letter5" onclick="replaceLetter('5')">_</button>
-          <button class="letter" id="letter6" onclick="replaceLetter('6')">_</button>
-          <button class="letter" id="letter7" onclick="replaceLetter('7')">_</button>
-          <button class="letter" id="letter8" onclick="replaceLetter('8')">_</button>
-          <button class="letter" id="letter9" onclick="replaceLetter('9')">_</button>
-          <button class="letter" id="letter10" onclick="replaceLetter('10')">_</button>
-          <button class="letter" id="letter11" onclick="replaceLetter('11')">_</button>
-          <button class="letter" id="letter12" onclick="replaceLetter('12')">_</button>
-          <button class="letter" id="letter13" onclick="replaceLetter('13')">_</button>
-          <button class="letter" id="letter14" onclick="replaceLetter('14')">_</button>
-          <button class="letter" id="letter15" onclick="replaceLetter('15')">_</button>
+          <button class="letter" id="letter1" aria-label="Position 1" aria-pressed="false" onclick="replaceLetter('1')">_</button>
+          <button class="letter" id="letter2" aria-label="Position 2" aria-pressed="false" onclick="replaceLetter('2')">_</button>
+          <button class="letter" id="letter3" aria-label="Position 3" aria-pressed="false" onclick="replaceLetter('3')">_</button>
+          <button class="letter" id="letter4" aria-label="Position 4" aria-pressed="false" onclick="replaceLetter('4')">_</button>
+          <button class="letter" id="letter5" aria-label="Position 5" aria-pressed="false" onclick="replaceLetter('5')">_</button>
+          <button class="letter" id="letter6" aria-label="Position 6" aria-pressed="false" onclick="replaceLetter('6')">_</button>
+          <button class="letter" id="letter7" aria-label="Position 7" aria-pressed="false" onclick="replaceLetter('7')">_</button>
+          <button class="letter" id="letter8" aria-label="Position 8" aria-pressed="false" onclick="replaceLetter('8')">_</button>
+          <button class="letter" id="letter9" aria-label="Position 9" aria-pressed="false" onclick="replaceLetter('9')">_</button>
+          <button class="letter" id="letter10" aria-label="Position 10" aria-pressed="false" onclick="replaceLetter('10')">_</button>
+          <button class="letter" id="letter11" aria-label="Position 11" aria-pressed="false" onclick="replaceLetter('11')">_</button>
+          <button class="letter" id="letter12" aria-label="Position 12" aria-pressed="false" onclick="replaceLetter('12')">_</button>
+          <button class="letter" id="letter13" aria-label="Position 13" aria-pressed="false" onclick="replaceLetter('13')">_</button>
+          <button class="letter" id="letter14" aria-label="Position 14" aria-pressed="false" onclick="replaceLetter('14')">_</button>
+          <button class="letter" id="letter15" aria-label="Position 15" aria-pressed="false" onclick="replaceLetter('15')">_</button>
         </div>
 
-        <p class="dt hide_at_start" id="dt3"><span> Performance </span></p>
 
         <div class="guess_and_cost">
           <div class="game_status_and_guess hide_at_start">
             <div class="cost hide_at_start">
-              <p class="hide_at_start" >Cost: </p>
+              <p class="hide_at_start" >Incorrect guesses </p>
               <p class="hide_at_start" id="cost">0</p>
             </div>
 
-            <div class="entropy hide_at_start"">
-            <p class=" hide_at_start">Entropy: </p>
+            <div class="entropy hide_at_start" title="Uncertainty over the remaining words, measured in bits">
+            <p class=" hide_at_start">Entropy (bits) </p>
               <p class="hide_at_start" id="entropy">0</p>
             </div>
 
-            <p class="guess hide_at_start" id="guess">Guess: _ </p>
+            <p class="guess hide_at_start" id="guess" aria-live="polite">Next guess <span id="guessed-letter">_</span></p>
 
           </div>
-          <button class="button hide_at_start" id="guess-button" onclick="guessNext()">Guess</button>
+          <button class="button hide_at_start" id="guess-button" onclick="guessNext()">Next guess</button>
         </div>
       </div>
     </main>
