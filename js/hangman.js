@@ -93,6 +93,7 @@ function guessNext() {
 
     // if there is only one word left, guess the next letter that is available
     if (matchingWords.length === 1) {
+        document.getElementById('entropy').innerHTML = '0.00';
         var word = matchingWords[0];
         for (var i = 0; i < word.length; i++) {
             if (currentState[i] === '_') {
@@ -106,7 +107,7 @@ function guessNext() {
     } else {
         // calculate the entropy
         var sum_counts = matchingCounts.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);
-        entropy = -matchingCounts.reduce((acc, count) => {
+        var entropy = -matchingCounts.reduce((acc, count) => {
             const prob = parseInt(count, 10) / sum_counts;
             return acc + prob * Math.log2(prob);
         }, 0);
@@ -116,7 +117,7 @@ function guessNext() {
         entropyElement.innerHTML = entropy.toFixed(2);
 
         // estimate the expected entropy from each available letter
-        exp_entropies = [];
+        var exp_entropies = [];
         for (var i = 0; i < availableChars.length; i++) {
             exp_entropies.push(probeChar(availableChars[i], matchingWords, matchingCounts));
         }
@@ -140,63 +141,43 @@ function guessNext() {
     costElement.innerHTML = cost;
 
     // update the available characters
-    availableChars.splice(min_entropy_idx, 1);
+    var nextGuessIdx = availableChars.indexOf(nextGuess);
+    if (nextGuessIdx !== -1) {
+        availableChars.splice(nextGuessIdx, 1);
+    }
 }
 
 function probeChar(char, words, counts) {
-    var positive_counts = []
-    var negative_counts = []
-    var positive_words = []
-    var negative_words = []
-
+    var pattern_counts = {};
     var sum_total = counts.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);
 
-
+    // group the words by every position revealed by this letter
     for (var i = 0; i < words.length; i++) {
         var word = words[i];
-        var count = counts[i];
-        if (word.includes(char)) {
-            positive_words.push(word);
-            positive_counts.push(count);
-        } else {
-            negative_words.push(word);
-            negative_counts.push(count);
+        var count = parseInt(counts[i], 10);
+        var pattern = '';
+        for (var j = 0; j < word.length; j++) {
+            pattern += word[j] === char ? '1' : '0';
         }
+
+        if (pattern_counts[pattern] === undefined) {
+            pattern_counts[pattern] = [];
+        }
+        pattern_counts[pattern].push(count);
     }
 
-    // if there is no positive word, return high entropy
-    if (positive_counts.length === 0) {
-        return 10.0;
-    }
-
-    var sum_positives = positive_counts.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);
-    var sum_negatives = negative_counts.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);
-
-    var prob_positive = sum_positives / sum_total;
-    var prob_negative = sum_negatives / sum_total;
-
-    var entropy_positive = 0.0;
-    var entropy_negative = 0.0;
-
-    if (positive_counts.length > 0) {
-        entropy_positive = -positive_counts.reduce((acc, count) => {
-            const prob = parseInt(count, 10) / sum_positives;
+    // average the remaining word entropy over all possible patterns
+    var exp_entropy = 0.0;
+    for (var pattern in pattern_counts) {
+        var group_counts = pattern_counts[pattern];
+        var sum_group = group_counts.reduce((a, b) => a + b, 0);
+        var prob_group = sum_group / sum_total;
+        var entropy_group = -group_counts.reduce((acc, count) => {
+            const prob = count / sum_group;
             return acc + prob * Math.log2(prob);
         }, 0);
+        exp_entropy += prob_group * entropy_group;
     }
-
-    if (negative_counts.length > 0) {
-        entropy_negative = -negative_counts.reduce((acc, count) => {
-            const prob = parseInt(count, 10) / sum_negatives;
-            return acc + prob * Math.log2(prob);
-        }, 0);
-    }
-
-    var exp_entropy = prob_positive * entropy_positive + prob_negative * entropy_negative;
-    // console.log(`Char: ${char}, Positive: ${prob_positive}, Negative: ${prob_negative}, Entropy: ${exp_entropy}`);
-    // console.log(`Positive: ${positive_words}, Negative: ${negative_words}`);
-    // console.log(`Positive entropy: ${entropy_positive}, Negative entropy: ${entropy_negative}`);
-    // console.log('\n');
 
     return exp_entropy;
 }
@@ -210,6 +191,11 @@ function getMatchingWords(currentState) {
         var match = true;
         for (var j = 0; j < currentState.length; j++) {
             if (currentState[j] !== '_' && currentState[j] !== word[j]) {
+                match = false;
+                break;
+            }
+            // a revealed letter cannot occur in any unselected position
+            if (currentState[j] === '_' && currentState.includes(word[j])) {
                 match = false;
                 break;
             }

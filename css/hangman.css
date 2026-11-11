@@ -49,6 +49,11 @@
     -moz-appearance: textfield;
 }
 
+.num_of_chars_box::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
 .num_of_chars_box::-webkit-inner-spin-button,
 .num_of_chars_box::-webkit-outer-spin-button {
     -webkit-appearance: none;
