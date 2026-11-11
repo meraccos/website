@@ -29,6 +29,39 @@ main img {
     text-align: center;
 }
 
+/* Homepage refinement: calmer typography and the same rhythm as the archives. */
+.homepage .profile > .content {
+    line-height: 1.7;
+}
+
+.homepage .profile > .content p {
+    margin: 0 0 20px;
+}
+
+.homepage .profile > .content p:last-of-type {
+    margin-bottom: 0;
+}
+
+.homepage .profile > .content p:first-child {
+    color: #dedede;
+}
+
+.homepage .profile img {
+    border-color: #3b3939;
+}
+
+.homepage .social-links a {
+    box-sizing: border-box;
+    background: transparent;
+    border: 1px solid #3b3939;
+}
+
+.homepage .social-links a:hover,
+.homepage .social-links a:focus-visible {
+    background: #292727;
+    border-color: #777;
+}
+
 .problem {
     display:block;
     padding-left: 20px;
@@ -467,5 +500,34 @@ li {
 @media (max-width: 768px) {
     .project-entry-heading {
         gap: 14px;
+    }
+}
+
+.homepage .publication-list li {
+    padding: 24px 0;
+}
+
+.homepage .publication-title {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.homepage .publication-year {
+    font-size: 14px;
+    color: #999;
+}
+
+.homepage .publication-authors,
+.homepage .publication-venue {
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .homepage .profile > .content {
+        margin-top: 28px;
+    }
+
+    .homepage .publication-title {
+        font-size: 17px;
     }
 }
