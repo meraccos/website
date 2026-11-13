@@ -1,3 +1,9 @@
+@property --slider-color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #7daee8;
+}
+
 .movie_container {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
@@ -49,6 +55,18 @@
     height: 36px;
     background: transparent;
     cursor: pointer;
+    transition: --slider-color 160ms ease;
+}
+
+.slider:hover {
+    --slider-color: #8bbaf0;
+}
+
+.slider:focus-visible {
+    --slider-color: #9ac7f5;
+    outline: 2px solid #7daee8;
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 .slider::-webkit-slider-runnable-track {
@@ -103,6 +121,7 @@
     color: #e5e5e5;
     font: inherit;
     cursor: pointer;
+    transition: background-color 160ms ease, border-color 160ms ease;
 }
 
 .movie_button:hover {
@@ -112,6 +131,11 @@
 
 .movie_button:active {
     background: #222;
+}
+
+.movie_button:focus-visible {
+    outline: 2px solid #7daee8;
+    outline-offset: 3px;
 }
 
 #outputs-box {
@@ -138,7 +162,7 @@
     gap: 12px;
     align-items: center;
     padding: 0;
-    border-bottom: 1px solid #292929;
+    border-bottom: 1px solid #353535;
     font-size: 15px;
     line-height: 1.5;
 }
@@ -150,7 +174,7 @@
     color: #999;
     font-size: 13px;
     font-weight: 400;
-    border-bottom-color: #444;
+    border-bottom-color: #505050;
 }
 
 .outbox:first-child b {
