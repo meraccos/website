@@ -1,7 +1,7 @@
 .movie_container {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-    grid-template-areas: "inputs outputs" "button outputs";
+    grid-template-areas: "inputs outputs" "button .";
     gap: 16px 28px;
     align-items: start;
     margin-top: 30px;
@@ -13,7 +13,7 @@
     padding: 20px;
     background: #1b1b1b;
     border: 1px solid #333;
-    border-radius: 8px;
+    border-radius: 20px;
 }
 
 #inputs-box {
@@ -98,7 +98,7 @@
     min-height: 48px;
     padding: 12px 20px;
     border: 1px solid #444;
-    border-radius: 8px;
+    border-radius: 15px;
     background: #292929;
     color: #e5e5e5;
     font: inherit;
@@ -116,25 +116,37 @@
 
 #outputs-box {
     grid-area: outputs;
+    height: 100%;
+    min-height: 0;
     padding: 0 20px;
+    overflow: hidden;
 }
 
 .outputs {
+    height: 100%;
     min-width: 0;
+}
+
+.outputs:has(.outbox:nth-child(2) .movie_name:not(:empty)) {
+    display: grid;
+    grid-template-rows: 56px repeat(10, minmax(min-content, 1fr));
 }
 
 .outbox {
     display: grid;
-    grid-template-columns: 2.5ch minmax(0, 1fr) 5ch 5ch;
+    grid-template-columns: 2.5ch minmax(0, 1fr) 8ch 8ch;
     gap: 12px;
-    align-items: baseline;
-    padding: 20px 0;
+    align-items: center;
+    padding: 0;
     border-bottom: 1px solid #292929;
     font-size: 15px;
     line-height: 1.5;
 }
 
 .outbox:first-child {
+    box-sizing: border-box;
+    height: 56px;
+    padding: 8px 0;
     color: #999;
     font-size: 13px;
     font-weight: 400;
@@ -143,6 +155,21 @@
 
 .outbox:first-child b {
     font-weight: 400;
+}
+
+.outbox:first-child .align,
+.outbox:first-child .rating {
+    display: block;
+    width: max-content;
+    justify-self: end;
+    color: #999;
+    line-height: 1.25;
+    text-align: center;
+}
+
+.outbox:first-child .align span,
+.outbox:first-child .rating span {
+    display: block;
 }
 
 .outbox:last-child {
@@ -165,14 +192,20 @@
 
 .outbox:first-child .movie_name {
     color: #999;
+    font-size: 15px;
 }
 
 .rating,
 .align {
+    justify-self: end;
     text-align: right;
-    color: #bdbdbd;
+    color: #d5d5d5;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
+}
+
+.rating {
+    padding-right: 3px;
 }
 
 .index {
@@ -212,7 +245,12 @@
     }
 
     #outputs-box {
+        height: auto;
         padding: 0 16px;
+    }
+
+    .outputs:has(.outbox:nth-child(2) .movie_name:not(:empty)) {
+        grid-template-rows: 56px repeat(10, minmax(56px, auto));
     }
 
     .outbox {

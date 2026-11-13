@@ -102,9 +102,9 @@ async function recommend() {
         indices.sort((a, b) => output[b] - output[a]);
         let top10Indices = indices.slice(0, 10);
 
-        names[0].innerHTML = "<b> Movie Name";
-        ratings[0].innerHTML = "<b>Rating";
-        aligns[0].innerHTML = "<b>Match";
+        names[0].innerHTML = "<b> Movie name";
+        ratings[0].innerHTML = "<span>IMDb</span><span>rating</span>";
+        aligns[0].innerHTML = "<span>Match</span><span>score</span>";
 
         // Print out the movies
         for (let i = 0; i < top10Indices.length; i++) {
