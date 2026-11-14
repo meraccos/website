@@ -5,6 +5,7 @@
 }
 
 .sdr-article > p {
+    max-width: var(--prose-width);
     margin: 24px 0;
     text-align: justify;
 }

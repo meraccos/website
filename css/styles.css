@@ -464,7 +464,7 @@ li {
     line-height: 1.7;
 }
 
-.quote-entry cite {
+.quote-entry figcaption {
     display: block;
     margin-top: 8px;
     color: var(--muted-text);
@@ -474,7 +474,7 @@ li {
     text-align: right;
 }
 
-.quote-entry cite::before {
+.quote-entry figcaption::before {
     content: "— ";
 }
 
@@ -632,4 +632,12 @@ li {
     .homepage .publication-title {
         font-size: 17px;
     }
+}
+
+.quote-entry blockquote {
+    margin: 0;
+}
+
+.enigma-page > p.content {
+    max-width: var(--prose-width);
 }

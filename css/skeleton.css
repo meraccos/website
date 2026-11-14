@@ -12,6 +12,7 @@
     --surface-hover: #3a3a3a;
     --strong-text: #c6c6c6;
     --accent: #8ab4e8;
+    --prose-width: 68ch;
     --site-content-width: 924px;
     --site-top-space: 48px;
 }
@@ -139,6 +140,7 @@ body a:hover,
 }
 
 .line {
+    display: block;
     background-color: #ffffff;
     height: 2px;
     border-radius: 20px;
@@ -286,4 +288,9 @@ footer {
     .nav .menu-button .line {
         transition: none;
     }
+}
+
+.nav a[aria-current="page"],
+.mobile-menu a[aria-current="page"] {
+    color: var(--heading-text);
 }
