@@ -1,41 +1,68 @@
 .sdr-article {
-    margin-top: 44px;
+    padding-bottom: 32px;
     font-size: 1.125rem;
     line-height: 1.7;
 }
 
-.sdr-article > p {
-    max-width: var(--prose-width);
-    margin: 24px 0;
-    text-align: justify;
+.sdr-article > .section-heading {
+    margin-bottom: 28px;
 }
+
+/* Same paragraph rhythm as .content on your other pages */
+.sdr-article > p {
+    margin: 0 0 20px;
+    text-align: left;
+}
+
+/* ---------- Figures ---------- */
 
 .sdr-article > figure {
     width: 100%;
-    max-width: 480px;
-    margin: 28px auto 36px;
+    max-width: var(--figure-width, 500px);
+    margin: 32px auto 40px;
 }
 
 .sdr-article > .sdr-portrait {
-    max-width: 360px;
+    max-width: var(--figure-width, 360px);
+}
+
+.sdr-article > .sdr-receiver {
+    margin-top: 24px;
+    margin-bottom: 36px;
 }
 
 .sdr-article > .sdr-result {
-    max-width: 560px;
+    max-width: var(--figure-width, 720px);
+    margin-top: 40px;
+    margin-bottom: 0;
 }
 
+/* Same hairline border as the photo on the homepage */
 .sdr-article img {
     display: block;
+    box-sizing: border-box;
     width: 100%;
     height: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+/* Same muted 14px as publication authors/venues */
+.sdr-article figcaption {
+    margin-top: 10px;
+    color: var(--muted-text);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    text-align: center;
 }
 
 @media (max-width: 768px) {
-    .sdr-article {
-        font-size: 1.0625rem;
+    .sdr-article > figure {
+        margin-top: 24px;
+        margin-bottom: 32px;
     }
 
-    .sdr-article > p {
-        text-align: left;
+    .sdr-article > .sdr-result {
+        margin-bottom: 0;
     }
 }

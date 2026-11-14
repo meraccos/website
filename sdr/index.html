@@ -4,13 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="A project exploring antenna construction and weather satellite image reception using software-defined radio." />
-    <meta property="og:title" content="Weather Satellite SDR | Meraj Mammadov" />
+    <meta property="og:title" content="Receiving Images from Space | Meraj Mammadov" />
     <meta property="og:description" content="A project exploring antenna construction and weather satellite image reception using software-defined radio." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://merajmammadov.com/sdr/" />
-    <meta property="og:image" content="https://merajmammadov.com/media/meraj.jpg" />
+    <meta property="og:image" content="https://merajmammadov.com/media/sdr-weather-image.jpg" />
+    <meta property="og:image:width" content="965" />
+    <meta property="og:image:height" content="964" />
+    <meta property="og:image:alt" content="An image of Earth received from the GK-2A weather satellite." />
     <meta property="og:site_name" content="Meraj Mammadov" />
-    <title>Weather Satellite SDR | Meraj Mammadov</title>
+    <title>Receiving Images from Space | Meraj Mammadov</title>
     <link rel="canonical" href="https://merajmammadov.com/sdr/" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -56,32 +59,51 @@
 
     <main class="sdr-article">
       <div class="section-heading">
-        <h1>Weather Satellite SDR</h1>
+        <h1>Receiving Images from Space</h1>
       </div>
 
-      <p>I recently came across software-defined radio (SDR): with a small USB receiver and some software, you can listen to all sorts of radio signals. What caught my attention was the possibility of receiving images directly from weather satellites. Korea’s GEO-KOMPSAT 2A (GK-2A) is visible from where I live, so I decided to give it a try.</p>
-
-      <p>The first setup is a dipole antenna on a tripod, with an aluminum dish as a reflector. Simple enough to put together, but apparently not enough to receive the satellite’s weak signal at around 1.7 GHz. So far, nothing.</p>
-      <figure>
-        <img src="/media/sdr-dipole.jpg" alt="Dipole antenna on a tripod with an aluminum dish reflector" width="1600" height="1200" loading="lazy" decoding="async" />
+      <p>
+        Radios pick up broadcasts, phones connect to cell towers, and GPS receivers listen to satellites.
+        Most of these devices are built to receive signals within a narrow range of the radio spectrum.
+        For around $40, a small USB device called software-defined radio (<a href="https://www.rtl-sdr.com/">SDR</a>) lets you receive signals across a much wider range and process them on your computer. Cool, right?
+      </p>
+      <figure class="sdr-receiver" style="--figure-width: 240px;">
+        <img src="/sdr/rtl_sdr.jpg" alt="RTL-SDR USB radio receiver" width="999" height="749" loading="lazy" decoding="async" />
+        <figcaption>The RTL-SDR USB receiver.</figcaption>
       </figure>
 
-      <p>Next comes a homemade Yagi-Uda antenna, with dimensions chosen for the satellite’s transmission frequency. The signal is better this time, which is encouraging, but it looks like I need a larger reflector.</p>
+      <p>
+        What can you do with it? The sky’s the limit! You can listen to radio broadcasts, pick up police walkie-talkies (not sure if this is legal), track aircraft, or even receive
+        images of Earth from weather satellites. That last one caught my attention. I live in Korea, within view of a geostationary weather satellite GEO-KOMPSAT 2A (GK-2A), so I decided to give it a try.
+     </p>
+
+     <p>
+      To receive the images, I need a laptop, an SDR, and an antenna/reflector pair. The antenna/reflector is the tricky part: GK-2A transmits at around 1.7 GHz, and its signal is very weak by the time it reaches us. I started with a simple dipole antenna on a tripod, with an aluminum food container (yes) behind it as a reflector.
+     </p>
+
+      <figure style="--figure-width: 500px;">
+        <img src="/media/sdr-dipole.jpg" alt="Dipole antenna on a tripod with an aluminum dish reflector" width="1600" height="1200" loading="lazy" decoding="async" />
+        <figcaption>The first setup: a dipole and an aluminum food container.</figcaption>
+      </figure>
+
+      <p>That didn't work, and I received no signal from the satellite at all. I decided to upgrade the antenna next, and built a Yagi-Uda antenna, with dimensions tuned to the satellite's transmission frequency. This is supposed to work a lot better than a dipole antenna.</p>
       <figure>
         <img src="/media/sdr-yagi.png" alt="Homemade Yagi-Uda antenna" width="1600" height="1213" loading="lazy" decoding="async" />
+        <figcaption>The homemade Yagi-Uda antenna.</figcaption>
       </figure>
 
-      <p>An old umbrella covered in aluminum foil seems worth a try. It looks a little questionable, but it finally works—after several frustrating hours of adjusting the alignment. Even a small change in direction can make the signal disappear, so once I find the right position, I am reluctant to touch anything.</p>
+      <p>Still no signal. The next upgrade comes to the reflector. I picked up an old umbrella, covered its inside in aluminum foil, and placed my antenna on the axis where the signal reception was supposed to be the strongest. The direction you point the reflector can matter a lot for the reception strength. There are tools (dish pointers) to compute the exact angle you need! GK-2A was about 49° above the horizon from my location, which made my location quite a good one to receive its signal.</p>
       <figure class="sdr-portrait">
         <img src="/media/sdr-umbrella.jpg" alt="Umbrella covered in aluminum foil used as a reflector" width="1200" height="1600" loading="lazy" decoding="async" />
+        <figcaption>A larger reflector, made from an old umbrella.</figcaption>
       </figure>
 
-      <p>Luckily, the satellite is about 49° above the horizon here, which helps with reception. The images come through in grayscale; after some post-processing, this is the result. It is quite satisfying to see an image of Earth arrive through an antenna made from things lying around.</p>
+      <p>Aaand finally, a signal! GK-2A’s transmissions are encrypted, but the decryption keys are publicly available, so decoding the images is straightforward. They arrive in grayscale; after some post-processing, I got the image below. A new image comes through about every ten minutes, so the next step is to collect enough for a timelapse. That means spending more time outside with the setup, though, and Korean summers are <em>hot</em>. That will wait until the next season.</p>
       <figure class="sdr-result">
         <img src="/media/sdr-weather-image.jpg" alt="Processed satellite image showing East Asia, Australia, and the Pacific" width="965" height="964" loading="lazy" decoding="async" />
+        <figcaption>An image received from GK-2A, after post-processing.</figcaption>
       </figure>
 
-      <p>The satellite sends images about every ten minutes. I am waiting for the weather to cool down a little so I can leave the setup outside for longer and collect enough for a timelapse. For now, I am happy to have it receiving anything at all.</p>
     </main>
     <footer>
       <p>&copy; <span data-copyright-year>2026</span> Meraj Mammadov</p>

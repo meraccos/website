@@ -12,7 +12,6 @@
     --surface-hover: #3a3a3a;
     --strong-text: #c6c6c6;
     --accent: #8ab4e8;
-    --prose-width: 68ch;
     --site-content-width: 820px;
     --site-top-space: 48px;
 }
@@ -126,6 +125,11 @@ body a:hover,
 }
 
 .nav a:hover {
+    color: var(--heading-text);
+}
+
+.nav a[aria-current="page"],
+.mobile-menu a[aria-current="page"] {
     color: var(--heading-text);
 }
 
@@ -288,9 +292,4 @@ footer {
     .nav .menu-button .line {
         transition: none;
     }
-}
-
-.nav a[aria-current="page"],
-.mobile-menu a[aria-current="page"] {
-    color: var(--heading-text);
 }
