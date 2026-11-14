@@ -417,6 +417,7 @@ li {
 /* Project archive: publication-style rows with a short description. */
 .side-projects,
 .enigma-page,
+.quotes-page,
 .project-page {
     margin-top: 44px;
 }
@@ -430,6 +431,43 @@ li {
 .side-projects > .content {
     text-align: left;
     line-height: 1.6;
+}
+
+.quotes-page > .content {
+    text-align: left;
+    line-height: 1.6;
+}
+
+.quote-list {
+    margin-top: 32px;
+}
+
+.quote-entry {
+    margin: 0;
+    padding: 30px 0;
+}
+
+.quote-entry p {
+    margin: 0;
+    padding-left: 18px;
+    border-left: 2px solid #3b3b3b;
+    color: #d5d5d5;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.quote-entry cite {
+    display: block;
+    margin-top: 8px;
+    color: #999;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.6;
+    text-align: right;
+}
+
+.quote-entry cite::before {
+    content: "— ";
 }
 
 .enigma-page > .problem {
