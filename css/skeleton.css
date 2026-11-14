@@ -1,5 +1,17 @@
 /* Shared portfolio layout: adjust these values for every portfolio page. */
 :root {
+    color-scheme: dark;
+    --page-bg: #161616;
+    --panel-bg: #202020;
+    --heading-text: #e8e8e8;
+    --body-text: #c8c8c8;
+    --muted-text: #a0a0a0;
+    --border-color: #383838;
+    --border-subtle: #292929;
+    --surface: #2a2a2a;
+    --surface-hover: #3a3a3a;
+    --strong-text: #c6c6c6;
+    --accent: #8ab4e8;
     --site-content-width: 924px;
     --site-top-space: 48px;
 }
@@ -15,8 +27,8 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
-    background-color: #121212;
-    color: #BDBDBD;
+    background-color: var(--page-bg);
+    color: var(--body-text);
     font-family: 'Lato', sans-serif;
     
     box-sizing: border-box;
@@ -72,23 +84,23 @@ header .site-title {
 }
 
 header .site-title a {
-    color: #e5e5e5;
+    color: var(--heading-text);
 }
 
 body a {
     text-decoration: none;
-    color: #ffffff;
+    color: var(--accent);
 }
 
 body .content a,
 .sdr-article > p a {
     text-decoration: none;
-    color: #dadada;
+    color: var(--accent);
 }
 
 body .content a:hover,
 .sdr-article > p a:hover {
-    color: #e5e5e5;
+    color: var(--heading-text);
     text-decoration: underline;
 }
 
@@ -107,13 +119,13 @@ body a:hover,
 }
 
 .nav a {
-    color: #999;
+    color: var(--muted-text);
     text-decoration: none;
     font-size: 24px;
 }
 
 .nav a:hover {
-    color: #e5e5e5;
+    color: var(--heading-text);
 }
 
 
@@ -156,14 +168,14 @@ body a:hover,
 }
 
 :is(a, button, input, label):focus-visible {
-    outline: 2px solid currentColor;
+    outline: 2px solid var(--accent);
     outline-offset: 4px;
 }
 
 footer {
     text-align: center;
     font-size: 12px;
-    color: #999;
+    color: var(--muted-text);
     padding: 24px 0;
 }
 
@@ -261,7 +273,7 @@ footer {
         min-height: 48px;
         min-width: 140px;
         padding: 10px 20px;
-        color: #bdbdbd;
+        color: var(--body-text);
     }
 
     .mobile-menu a:hover {

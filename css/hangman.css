@@ -1,16 +1,16 @@
 .hangman {
     margin-top: 30px;
     padding: 24px;
-    border: 1px solid #333;
+    border: 1px solid var(--border-color);
     border-radius: 15px;
-    background: #1b1b1b;
+    background: var(--panel-bg);
     font-size: 15px;
     line-height: 1.5;
 }
 
 .hangman .game-label {
     margin: 0 0 14px;
-    color: #e5e5e5;
+    color: var(--heading-text);
     font-size: 16px;
     font-weight: 700;
     line-height: 1.5;
@@ -32,7 +32,7 @@
 }
 
 .hangman label {
-    color: #bdbdbd;
+    color: var(--body-text);
     font-size: 14px;
     font-weight: 700;
 }
@@ -45,8 +45,8 @@
     padding: 8px 10px;
     border: 1px solid #444;
     border-radius: 8px;
-    background: #121212;
-    color: #e5e5e5;
+    background: var(--page-bg);
+    color: var(--heading-text);
     font: inherit;
     font-size: 15px;
     font-variant-numeric: tabular-nums;
@@ -56,7 +56,7 @@
 }
 
 .num_of_chars_box::placeholder {
-    color: #999;
+    color: var(--muted-text);
     opacity: 1;
 }
 
@@ -76,8 +76,8 @@
     padding: 10px 18px;
     border: 1px solid #444;
     border-radius: 8px;
-    background: #292929;
-    color: #e5e5e5;
+    background: var(--surface);
+    color: var(--heading-text);
     font: inherit;
     font-size: 15px;
     font-weight: 700;
@@ -88,13 +88,13 @@
 
 .hangman .button:hover,
 .hangman .letter:hover {
-    background: #333;
-    border-color: #777;
+    background: var(--border-color);
+    border-color: var(--muted-text);
 }
 
 .hangman .game-hint {
     margin: 14px 0 0;
-    color: #bdbdbd;
+    color: var(--body-text);
     font-size: 15px;
     line-height: 1.6;
 }
@@ -110,7 +110,7 @@
 .hangman #dt2 {
     margin: 28px 0 0;
     padding-top: 24px;
-    border-top: 1px solid #333;
+    border-top: 1px solid var(--border-color);
 }
 
 .hangman.is-playing .display {
@@ -133,8 +133,8 @@
     padding: 0;
     border: 1px solid #444;
     border-radius: 8px;
-    background: #121212;
-    color: #e5e5e5;
+    background: var(--page-bg);
+    color: var(--heading-text);
     font: inherit;
     font-size: 20px;
     font-weight: 700;
@@ -144,7 +144,7 @@
 
 .hangman .letter[aria-pressed="true"] {
     background: #29384a;
-    border-color: #7daee8;
+    border-color: var(--accent);
 }
 
 .hangman .guess_and_cost {
@@ -157,7 +157,7 @@
 .hangman.is-playing .guess_and_cost {
     margin-top: 28px;
     padding-top: 24px;
-    border-top: 1px solid #333;
+    border-top: 1px solid var(--border-color);
 }
 
 .hangman.is-playing .game_status_and_guess {
@@ -174,7 +174,7 @@
     align-items: baseline;
     gap: 8px;
     font-size: 14px;
-    color: #999;
+    color: var(--muted-text);
     line-height: 1.5;
 }
 
@@ -193,7 +193,7 @@
 .hangman .guess {
     order: -1;
     margin: 0;
-    color: #bdbdbd;
+    color: var(--body-text);
     font-size: 15px;
 }
 
@@ -211,7 +211,7 @@
     height: 56px;
     box-sizing: border-box;
     flex-shrink: 0;
-    border: 1px solid #7daee8;
+    border: 1px solid var(--accent);
     border-radius: 8px;
     background: #29384a;
     color: #dcecff;
