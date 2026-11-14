@@ -8,43 +8,58 @@ var matchingWords = [];
 var matchingCounts = [];
 
 var availableChars = [];
+const vocabLoads = new Map();
+let vocabularyLoading = false;
 
 async function startGame() {
+    if (vocabularyLoading) return;
     var numOfCharsBox = document.getElementById('num_of_chars_box');
-    numOfChars = numOfCharsBox.value;
-    numOfChars = parseInt(numOfChars, 10);
+    let requestedLength = parseInt(numOfCharsBox.value, 10);
 
     // if numOfChars is not a number, it is 7
-    if (isNaN(numOfChars)) {
-        numOfChars = 7;
+    if (isNaN(requestedLength)) {
+        requestedLength = 7;
     }
-    if (numOfChars < 4) {
-        numOfChars = 4;
+    if (requestedLength < 4) {
+        requestedLength = 4;
     }
-    if (numOfChars > 15) {
-        numOfChars = 15;
+    if (requestedLength > 15) {
+        requestedLength = 15;
     }
-    numOfCharsBox.value = numOfChars;
+    numOfCharsBox.value = requestedLength;
 
-    // show all the letter_idx for idx=1 to numOfChars
-    for (var i = 1; i <= numOfChars; i++) {
+    var wordsFileName = `/hangman/vocab/words_${requestedLength}.txt`;
+    var countsFileName = `/hangman/vocab/counts_${requestedLength}.txt`;
+
+    // initialize the words and counts array
+    vocabularyLoading = true;
+    const startButton = document.getElementById('start-button');
+    const guessButton = document.getElementById('guess-button');
+    const status = document.getElementById('hangman-status');
+    startButton.disabled = true;
+    guessButton.disabled = true;
+    status.textContent = 'Loading words…';
+    try {
+        [wordsArray, countsArray] = await initVocab(wordsFileName, countsFileName);
+        status.textContent = '';
+    } catch (error) {
+        status.textContent = 'Could not load the word list. Please try again.';
+        console.error('Word list loading failed:', error);
+        return;
+    } finally {
+        vocabularyLoading = false;
+        startButton.disabled = false;
+        guessButton.disabled = false;
+    }
+
+    // Do not reset the visible game until its new vocabulary has loaded.
+    numOfChars = requestedLength;
+    for (var i = 1; i <= 15; i++) {
         var letterIdx = document.getElementById('letter' + i);
-        letterIdx.style.display = 'inline-flex';
+        letterIdx.style.display = i <= numOfChars ? 'inline-flex' : 'none';
         letterIdx.innerHTML = '_';
         letterIdx.setAttribute('aria-pressed', 'false');
     }
-
-    // hide all the letter_idx for idx=numOfChars+1 to 15
-    for (var i = numOfChars + 1; i <= 15; i++) {
-        var letterIdx = document.getElementById('letter' + i);
-        letterIdx.style.display = 'none';
-    }
-
-    var wordsFileName = `/hangman/vocab/words_${numOfChars}.txt`;
-    var countsFileName = `/hangman/vocab/counts_${numOfChars}.txt`;
-
-    // initialize the words and counts array
-    [wordsArray, countsArray] = await initVocab(wordsFileName, countsFileName);
 
     matchingWords = wordsArray;
     matchingCounts = countsArray;
@@ -68,12 +83,11 @@ async function startGame() {
 }
 
 function guessNext() {
+    if (vocabularyLoading) return;
     // get the current state and matching words
     var currentState = getCurrentState();
     [matchingWords, matchingCounts] = getMatchingWords(currentState);
     
-    console.log('Current state:', currentState);
-    console.log('Matching words', matchingWords);
 
     // if the last guess failed, cut the matched words.
     if (!currentState.includes(lastGuess) && lastGuess !== '_') {
@@ -106,9 +120,9 @@ function guessNext() {
         var nextGuess = availableChars[Math.floor(Math.random() * availableChars.length)];
     } else {
         // calculate the entropy
-        var sum_counts = matchingCounts.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);
+        var sum_counts = matchingCounts.reduce((a, b) => a + b, 0);
         var entropy = -matchingCounts.reduce((acc, count) => {
-            const prob = parseInt(count, 10) / sum_counts;
+            const prob = count / sum_counts;
             return acc + prob * Math.log2(prob);
         }, 0);
 
@@ -149,12 +163,12 @@ function guessNext() {
 
 function probeChar(char, words, counts) {
     var pattern_counts = {};
-    var sum_total = counts.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);
+    var sum_total = counts.reduce((a, b) => a + b, 0);
 
     // group the words by every position revealed by this letter
     for (var i = 0; i < words.length; i++) {
         var word = words[i];
-        var count = parseInt(counts[i], 10);
+        var count = counts[i];
         var pattern = '';
         for (var j = 0; j < word.length; j++) {
             pattern += word[j] === char ? '1' : '0';
@@ -237,72 +251,24 @@ function getCurrentState() {
     return currentState;
 }
 
-async function initVocab(wordsFileName, countsFileName) {
-    try {
-        const wordsResponse = await fetch(wordsFileName);
-        const wordsData = await wordsResponse.text();
-        wordsArray = wordsData.split('\n').map(word => word.trim()).filter(word => word.length > 0);
-
-        const countsResponse = await fetch(countsFileName);
-        const countsData = await countsResponse.text();
-        countsArray = countsData.split('\n').map(word => word.trim()).filter(word => word.length > 0);
-
-        return [wordsArray, countsArray];
-    } catch (error) {
-        return null;
+function initVocab(wordsFileName, countsFileName) {
+    const key = `${wordsFileName}:${countsFileName}`;
+    if (!vocabLoads.has(key)) {
+        const load = Promise.all([wordsFileName, countsFileName].map(async (file) => {
+            const response = await fetch(file);
+            if (!response.ok) throw new Error(`Could not load vocabulary: ${response.status}`);
+            return (await response.text()).split('\n').map(line => line.trim()).filter(Boolean);
+        })).then(([words, rawCounts]) => {
+            const counts = rawCounts.map(Number);
+            if (words.length !== counts.length || counts.some(count => !Number.isSafeInteger(count) || count <= 0)) {
+                throw new Error('Invalid vocabulary counts');
+            }
+            return [words, counts];
+        }).catch((error) => {
+            vocabLoads.delete(key);
+            throw error;
+        });
+        vocabLoads.set(key, load);
     }
-}
-
-
-function pickWord() {
-
-    // The filename of the text file, words_{numofchars}.txt
-    var wordsFileName = `/hangman/vocab/words_${numOfChars}.txt`;
-    var countsFileName = `/hangman/vocab/counts_${numOfChars}.txt`;
-
-
-    let selectedWord = '';
-    let selectedCount = '';
-    
-    async function fetchData() {
-        try {
-            const wordsResponse = await fetch(wordsFileName);
-            const wordsData = await wordsResponse.text();
-            wordsArray = wordsData.split('\n').map(word => word.trim()).filter(word => word.length > 0);
-            console.log(wordsArray); // Output the array of words to the console
-    
-            const countsResponse = await fetch(countsFileName);
-            const countsData = await countsResponse.text();
-            countsArray = countsData.split('\n').map(word => word.trim()).filter(word => word.length > 0);
-            console.log(countsArray); // Output the array of words to the console
-    
-            // Convert countsArray to probs
-            const countsSum = countsArray.reduce((a, b) => a + parseInt(b, 10), 0);
-            const probs = countsArray.map(count => parseInt(count, 10) / countsSum);
-            console.log(probs);
-    
-            // Sample a word and count from the probs distribution
-            const cumulativeProbs = probs.reduce((acc, prob, index) => {
-                if (index === 0) {
-                    acc.push(prob);
-                } else {
-                    acc.push(acc[index - 1] + prob);
-                }
-                return acc;
-            }, []);
-    
-            const randomValue = Math.random();
-            const selectedIndex = cumulativeProbs.findIndex(cumProb => randomValue < cumProb);
-    
-            selectedWord = wordsArray[selectedIndex];
-            selectedCount = countsArray[selectedIndex];
-    
-            console.log(`Selected word: ${selectedWord}, Selected count: ${selectedCount}`);
-        } catch (error) {
-            console.error('Error fetching the data:', error);
-        }
-    }
-    
-    fetchData();
-
+    return vocabLoads.get(key);
 }

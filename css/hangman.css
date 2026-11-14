@@ -92,6 +92,15 @@
     border-color: var(--muted-text);
 }
 
+.hangman .button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
+.hangman #hangman-status:empty {
+    display: none;
+}
+
 .hangman .game-hint {
     margin: 14px 0 0;
     color: var(--body-text);

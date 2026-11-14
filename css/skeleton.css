@@ -14,7 +14,7 @@
     --accent: #8ab4e8;
     --link-color: #a8b8c8;
     --site-content-width: 820px;
-    --site-top-space: 48px;
+    --site-top-space: 118px;
 }
 
 /* Reserve scrollbar space so navigation does not shift between pages. */
@@ -23,8 +23,6 @@ html {
 }
 
 body {
-    margin: 0;
-    padding: 0;
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
@@ -49,39 +47,11 @@ body > footer {
     min-width: 0;
 }
 
-/* Keep the header position consistent regardless of page length. */
-@media (min-width: 769px) {
-    body {
-        grid-template-rows: 70px auto auto minmax(32px, 1fr) auto;
-    }
-
-    body::before,
-    body::after {
-        content: "";
-    }
-
-    body::before { grid-row: 1; }
-    body > header { grid-row: 2; }
-    body > main { grid-row: 3; }
-    body::after { grid-row: 4; }
-    body > footer { grid-row: 5; }
-
-    header .site-title {
-        margin-top: 0;
-        padding-top: 0;
-    }
-}
-
 .site-title {
-    margin-top: 0.67em;
+    margin: 0 0 16px;
     font-size: 2.375rem;
     font-weight: 700;
     text-align: left;
-    padding-top: 70px;
-}
-
-header .site-title {
-    margin-bottom: 16px;
 }
 
 header .site-title a {
@@ -113,7 +83,6 @@ body a:hover,
 .nav {
     display: flex;
     align-items: center;
-    font-size: 1.3125rem;
     gap: 24px;
     text-align: left;
     margin-top: 0;
@@ -129,8 +98,8 @@ body a:hover,
     color: var(--heading-text);
 }
 
-.nav a[aria-current="page"],
-.mobile-menu a[aria-current="page"] {
+.nav a[aria-current],
+.mobile-menu a[aria-current] {
     color: var(--heading-text);
 }
 
@@ -180,6 +149,7 @@ body a:hover,
 }
 
 footer {
+    margin-top: 32px;
     text-align: center;
     font-size: 0.75rem;
     color: var(--muted-text);
@@ -188,13 +158,15 @@ footer {
 
 @media (max-width: 768px) {
     :root {
-        --site-top-space: 0px;
+        --site-top-space: 72px;
+    }
+
+    footer {
+        margin-top: 0;
     }
 
     .site-title {
         font-size: 2.1875rem;
-        padding-top: 50px;
-        margin-bottom: 16px;
         text-align: center;
     }
     .desktop {
@@ -202,10 +174,6 @@ footer {
     }
     .mobile {
         display: block;
-    }
-
-    body {
-        margin: 0;
     }
 
     .nav {

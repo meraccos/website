@@ -2,38 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://merajmammadov.com/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 
   <url>
     <loc>https://merajmammadov.com/rail/</loc>
+    <lastmod>2026-11-04</lastmod>
   </url>
 
   <url>
     <loc>https://merajmammadov.com/projects/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 
   <url>
     <loc>https://merajmammadov.com/language/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 
   <url>
     <loc>https://merajmammadov.com/movie/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 
   <url>
     <loc>https://merajmammadov.com/sdr/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 
   <url>
     <loc>https://merajmammadov.com/hangman/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 
   <url>
     <loc>https://merajmammadov.com/enigma/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 
   <url>
     <loc>https://merajmammadov.com/quotes/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 
+  <url>
+    <loc>https://merajmammadov.com/cv.pdf</loc>
+    <lastmod>2026-11-13</lastmod>
+  </url>
 </urlset>

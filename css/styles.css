@@ -46,18 +46,6 @@ main img {
     text-align: center;
 }
 
-/* Homepage refinement: calmer typography and the same rhythm as the archives. */
-.homepage .profile > .content {
-    line-height: 1.6;
-}
-
-.homepage .profile > .content p {
-    margin: 0 0 20px;
-}
-
-.homepage .profile > .content p:last-of-type {
-    margin-bottom: 0;
-}
 
 .homepage .profile img {
     border-color: var(--border-color);
@@ -75,10 +63,6 @@ main img {
     border-color: var(--muted-text);
 }
 
-.problem {
-    display:block;
-    padding-left: 20px;
-}
 
 .social-links {
     display: flex;
@@ -197,159 +181,15 @@ main img {
     white-space: nowrap;
 }
 
-.animation {
+.animation.error {
     display: flex;
     align-items: center;
     object-fit: cover;
     overflow: hidden;
     justify-content: center;
     padding-top: 15px;
-    height: 120px;
-}
-
-.animation.error {
     height: 300px;
 }
-
-.projects {
-    text-align: left;
-    font-size: 1.125rem;
-}
-
-.projects h2 {
-    font-size: 1.5rem;
-    text-align: left;
-    padding-top: 50px;
-    padding-bottom: 25px;
-}
-
-.projects h3 {
-    font-style: italic;
-}
-
-.generator {
-    display: flex;
-    flex-direction: row;
-    gap: 1px;
-
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: justify;
-    padding: 20px;
-    padding-top: 25px;
-    padding-bottom: 30px;
-}
-
-.input_box {
-    margin: 0 auto;
-    margin-right: 25px;
-
-    width: 100px;
-    height: auto;
-    visibility: visible;  
-    background-color: var(--page-bg);
-    color: var(--body-text);
-    text-align: center;
-    padding: 10px;
-    border:none;
-    font-size: 0.8125rem;
-    border-bottom: 1px solid var(--heading-text);
-    border-radius:0px;
-}
-
-.input_box:focus {
-    border-bottom: 2px solid #ffffff;
-    outline: none;
-}
-
-.output_box {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: var(--surface);
-    padding: 20px;
-    border-radius: 20px;
-    font-size: 1rem;
-    border: 1px solid #404040;
-
-    position: relative;
-    box-sizing: border-box;
-    max-height: calc(100vh - 400px);
-    overflow-y: auto;
-}
-
-.switch {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    margin-top: 20px;
-    position: relative;
-}
-
-.button {
-    width: 100px;
-    height: 35px;
-    margin: 0 auto;
-    border-radius: 15px;
-    border-style:none;
-    background-color: var(--surface);
-    color: var(--body-text);
-    font-size: 0.875rem;
-    cursor: pointer;
-    text-align: center;
-    padding: 0px;
-}
-
-.button.left {
-    margin-right: 20px;
-}
-
-.button.right {
-    margin-left: 0px
-}
-
-.button.gen {
-    height: auto;
-    margin-left: 0px;
-}
-
-.button.gen:active {
-    transform: scale(0.95);
-}  
-
-
-.button:hover {
-    background-color: #999999;
-    color: #070707;
-}
-
-.button:disabled {
-    transform: scale(0.98);
-    background-color: #999999;
-    color: #070707;
-    cursor:default;
-    }    
-
-.dt {
-    width: 60%;
-    align-items: center; 
-    text-align: center; 
-    border-bottom: 1px solid #545454;
-    color: var(--muted-text);
-    line-height: 0.1em;
-    margin: 0 auto;
-    padding-top: 20px;
-}
-
-.dt span {
-    background: var(--page-bg);
-    padding:0 10px; 
-}
-
-li {
-    padding-top: 10px;
-}
-
 
 @media (max-width: 768px) {
     .content {
@@ -361,11 +201,6 @@ li {
 
     .homepage .profile > .content {
       text-align: center;
-    }
-
-    .problem {
-        text-align:left;
-        align-items: baseline;
     }
 
     .profile-aside {
@@ -398,9 +233,6 @@ li {
         max-height: 20px;
         flex: none;
     }
-    .output_box {
-        max-height: calc(100vh - 450px);
-    }
     .profile {
         flex-direction: column;
         align-items: center;
@@ -408,7 +240,7 @@ li {
     .profile .content {
       flex: none;
       max-width: 100%;
-      margin-top: 20px;
+      margin-top: 28px;
       order: 2;
     }
 
@@ -430,13 +262,6 @@ li {
     }
   }
 
-/* Project archive: publication-style rows with a short description. */
-.side-projects,
-.enigma-page,
-.quotes-page,
-.project-page {
-    margin-top: 44px;
-}
 
 @media (max-width: 768px) {
     body > main:not(.homepage) {
@@ -637,10 +462,6 @@ li {
 }
 
 @media (max-width: 768px) {
-    .homepage .profile > .content {
-        margin-top: 28px;
-    }
-
     .homepage .publication-title {
         font-size: 1.0625rem;
     }

@@ -1,33 +1,29 @@
-async function forward_bigram(x) {
-    const session = await ort.InferenceSession.create(MODEL.modelFile);
-    const feeds = { "input": x };
+async function forward_bigram(x, session) {
+    const feeds = { [session.inputNames[0]]: x };
     const results = await session.run(feeds);
-    const logits = results[13].data
+    const logits = results[session.outputNames[0]].data;
     return logits
 }
 
-async function generateBigramText(userInput) {
-    const button = document.getElementById('generate_button');
+async function generateBigramText(userInput, session, characterDictionary) {
     const outputElement = document.getElementById("output");
     let generatedText = "";
     
-    button.disabled = true;
 
     var dataA = Int32Array.from([1]);
-    const characterDictionary = await readCharacterEncodingFile();
 
     for (let j = 0; j < userInput; j++) {
         const tensorA = new ort.Tensor("int32", dataA, []);
-        const logits = await forward_bigram(tensorA);
+        const logits = await forward_bigram(tensorA, session);
         const probs = softmax(logits);
         const sampled_idx = multinomial(probs);
         const sampled_char = characterDictionary[sampled_idx];
 
         generatedText += sampled_char;
-        outputElement.innerHTML = generatedText;
+        outputElement.textContent = generatedText;
 
         dataA = Int32Array.from([sampled_idx]);
+        if (j + 1 < userInput) await pauseBetweenCharacters();
     }
 
-    button.disabled = false;
 }
