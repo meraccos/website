@@ -1,0 +1,189 @@
+.language-model {
+    margin-top: 30px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.language-model .model-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+    gap: 20px;
+    align-items: end;
+}
+
+.language-model .control-label {
+    display: block;
+    margin: 0 0 10px;
+    color: #999;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.language-model .switch {
+    display: flex;
+    gap: 2px;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 3px;
+    border: 1px solid #303030;
+    border-radius: 9px;
+    background: #181818;
+}
+
+.language-model .button {
+    box-sizing: border-box;
+    width: auto;
+    min-height: 44px;
+    height: auto;
+    margin: 0;
+    padding: 10px 18px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: #292929;
+    color: #e5e5e5;
+    font: inherit;
+    font-weight: 400;
+    line-height: 1.4;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.language-model .switch .button {
+    flex: 1;
+    min-height: 36px;
+    padding: 7px 12px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #999;
+}
+
+.language-model .button:hover {
+    background: #2d2d2d;
+    border-color: #606060;
+}
+
+.language-model .switch .button:not(:disabled):hover {
+    background: #242424;
+    color: #dedede;
+}
+
+.language-model .switch .button:disabled {
+    transform: none;
+    background: #303030;
+    color: #f0f0f0;
+    box-shadow: 0 1px 3px #0003;
+}
+
+.language-model .generation-group {
+    min-width: 0;
+}
+
+.language-model .generator {
+    display: flex;
+    gap: 8px;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.language-model .input_box {
+    box-sizing: border-box;
+    width: 76px;
+    height: 44px;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #363636;
+    border-radius: 8px;
+    background: #181818;
+    color: #e5e5e5;
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+    transition: border-color 180ms ease;
+}
+
+.language-model .input_box:focus-visible {
+    outline: 2px solid #7daee8;
+    outline-offset: 3px;
+}
+
+.language-model .button.gen:active {
+    transform: none;
+}
+
+.language-model .button.gen {
+    border-color: #4a4a4a;
+    background: #303030;
+    color: #ededed;
+    font-weight: 400;
+}
+
+.language-model .button.gen:hover {
+    border-color: #686868;
+    background: #3a3a3a;
+}
+
+.language-model .button.gen:disabled {
+    transform: none;
+    background: #292929;
+    border-color: #363636;
+    color: #999;
+    cursor: wait;
+}
+
+.language-model .output_box {
+    max-width: none;
+    min-height: 220px;
+    max-height: 60vh;
+    margin: 24px 0 0;
+    padding: 24px;
+    border: 1px solid #303030;
+    border-radius: 10px;
+    background: #181818;
+    color: #d5d5d5;
+    font: inherit;
+    font-size: 16px;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    text-align: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .language-model .button,
+    .language-model .input_box {
+        transition: none;
+    }
+}
+
+.language-model .output_box:empty::before {
+    content: "Generated text will appear here.";
+    color: #999;
+    font-size: 15px;
+}
+
+@media (max-width: 900px) {
+    .language-model .model-controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .language-model .generation-group {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 480px) {
+    .language-model .model-controls {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .language-model .output_box {
+        padding: 20px 16px;
+    }
+
+    .language-model .button.gen {
+        flex: 1;
+    }
+}

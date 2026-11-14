@@ -84,8 +84,17 @@ function zeroTensor(n_zeros) {
 
 function generateText() {
     const button = document.getElementById('generate_button');
+    if (button.disabled) return;
     const inputElement = document.getElementById("inputText");
-    const userInput = inputElement.value;
+    const userInput = Number(inputElement.value.trim() || 200);
+    if (!Number.isInteger(userInput) || userInput < 1 || userInput > 9999) {
+        inputElement.setCustomValidity('Enter a whole number between 1 and 9999.');
+        inputElement.reportValidity();
+        inputElement.oninput = () => inputElement.setCustomValidity('');
+        return;
+    }
+    inputElement.setCustomValidity('');
+    inputElement.value = userInput;
     if (selectedModel === 'lstm') {
         generateLSTMText(userInput);
     } else if (selectedModel === 'bigram') {

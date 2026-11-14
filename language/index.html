@@ -7,15 +7,16 @@
     <meta property="og:title" content="Neural Language Models | Meraj Mammadov" />
     <meta property="og:description" content="Interactive bigram and LSTM language models trained on texts by Nizami Ganjavi and William Shakespeare." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://merajmammadov.com/merajpt/" />
+    <meta property="og:url" content="https://merajmammadov.com/language/" />
     <meta property="og:image" content="https://merajmammadov.com/media/meraj.jpg" />
     <meta property="og:site_name" content="Meraj Mammadov" />
     <title>Neural Language Models | Meraj Mammadov</title>
-    <link rel="canonical" href="https://merajmammadov.com/merajpt/" />
+    <link rel="canonical" href="https://merajmammadov.com/language/" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/css/skeleton.css?v=20261111-21" />
     <link rel="stylesheet" href="/css/styles.css?v=20261111-21" />
-    <script src="/js/nn_common.js"></script>
+    <link rel="stylesheet" href="/css/language-model.css?v=20261114-4" />
+    <script src="/js/nn_common.js?v=20261114-1"></script>
     <script src="/js/common.js?v=20261111-3" defer></script>
 
     <link
@@ -58,15 +59,16 @@
         <h2>Neural Language Models</h2>
       </div>
       <p class="content">
-        Here you can test some of the neural language models that I have built.
-        Dataset Nizami stands for the collected works of Nizami Ganjavi in
-        Azerbaijani, and Shakespeare stands for the same in English. I will add
-        attention-based models in the future.
+        Simple language models trained on works by Nizami Ganjavi in Azerbaijani
+        and William Shakespeare in English. Choose a model and dataset to generate text.
       </p>
 
-      <p class="dt" id="dt"><span> Model </span></p>
+      <div class="language-model">
+      <div class="model-controls">
+      <div class="control-group">
+      <p class="control-label" id="model-label">Model</p>
 
-      <div class="switch" id="switch1">
+      <div class="switch" id="switch1" role="group" aria-labelledby="model-label">
         <button
           onclick="switchModel('bigram')"
           class="button left"
@@ -83,9 +85,11 @@
         </button>
       </div>
 
-      <p class="dt" id="dt2"><span> Dataset </span></p>
+      </div>
+      <div class="control-group">
+      <p class="control-label" id="dataset-label">Dataset</p>
 
-      <div class="switch" id="switch2">
+      <div class="switch" id="switch2" role="group" aria-labelledby="dataset-label">
         <button
           onclick="switchDataset('nizami')"
           class="button left"
@@ -102,7 +106,9 @@
         </button>
       </div>
 
-      <p class="dt" id="dt3"><span> Generate </span></p>
+      </div>
+      <div class="control-group generation-group">
+      <label class="control-label" for="inputText">Characters to generate</label>
 
       <div class="generator" id="generator">
         <input
@@ -111,7 +117,7 @@
           id="inputText"
           maxlength="4"
           inputmode="numeric"
-          placeholder="Number of chars"
+          value="200"
         />
         <button
           onclick="generateText()"
@@ -121,7 +127,9 @@
           Generate
         </button>
         </div>
-        <p id="output" class="output_box"></p>
+        </div>
+        </div>
+        <p id="output" class="output_box" aria-label="Generated text"></p>
       </div>
 
       <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
