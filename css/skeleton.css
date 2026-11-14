@@ -1,7 +1,7 @@
 /* Shared portfolio layout: adjust these values for every portfolio page. */
 :root {
     color-scheme: dark;
-    --page-bg: #161616;
+    --page-bg: #050505;
     --panel-bg: #202020;
     --heading-text: #e8e8e8;
     --body-text: #c8c8c8;
