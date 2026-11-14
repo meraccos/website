@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSET = re.compile(r'((?:src|href)=")(/(?:css|js)/[^"?]+\.(?:css|js))(?:\?v=[^"]+)?"')
+ASSET = re.compile(r'((?:src|href)=")(/(?!/)[^"?]+\.(?:css|js))(?:\?v=[^"]+)?"')
 
 
 def refresh(html):

@@ -73,7 +73,7 @@ async function run() {
                 };
             } },
         },
-    }, ['js/nn_common.js', 'js/bigram.js', 'js/lstm.js']);
+    }, ['language/language.js', 'language/bigram.js', 'language/lstm.js']);
     events.DOMContentLoaded();
     const [a, b] = await Promise.all([context.getSession('/shared'), context.getSession('/shared')]);
     assert.equal(a, b);
@@ -97,7 +97,7 @@ async function run() {
     assert.equal(get('inputText').value, '200');
     assert.equal(get('output').textContent, 'a'.repeat(200));
     await context.generateText();
-    assert.equal(calls.get('/language/models/bigram_nizami.onnx'), 1);
+    assert.equal(calls.get('/language/models/bigram-nizami.onnx'), 1);
     context.switchModel('lstm');
     get('inputText').value = '3';
     await context.generateText();
@@ -105,7 +105,7 @@ async function run() {
     assert.equal(context.logits, undefined, 'logits must not leak into the global scope');
     context.switchDataset('shakespeare');
     await context.generateText();
-    assert.equal(calls.get('/language/models/lstm_shakespeare.onnx'), 1);
+    assert.equal(calls.get('/language/models/lstm-shakespeare.onnx'), 1);
     failRun = true;
     await context.generateText();
     assert.equal(get('generate_button').disabled, false);
@@ -126,7 +126,7 @@ async function run() {
             if (failVocab) return { ok: false, status: 503 };
             return { ok: true, text: async () => file.includes('counts') ? '2\n3\n' : 'able\nacid\n' };
         },
-    }, ['js/hangman.js']);
+    }, ['hangman/hangman.js']);
     const vocab = await Promise.all([hangman.initVocab('words4', 'counts4'), hangman.initVocab('words4', 'counts4')]);
     assert.equal(vocab[0], vocab[1]);
     assert.equal(vocabFetches, 2);
@@ -139,12 +139,41 @@ async function run() {
     assert.ok(Math.abs(hangman.probeChar('z', ['able', 'acid'], [2, 3]) - expected) < 1e-12);
     assert.equal(hangman.probeChar('b', ['able', 'acid'], [2, 3]), 0);
 
-    for (let length = 4; length <= 15; length++) {
+    for (let length = 4; length <= 18; length++) {
         const lines = file => fs.readFileSync(path.join(root, 'hangman/vocab', file), 'utf8').trim().split('\n');
-        const words = lines(`words_${length}.txt`);
-        const counts = lines(`counts_${length}.txt`).map(Number);
+        const words = lines(`words-${length}.txt`);
+        const counts = lines(`counts-${length}.txt`).map(Number);
         assert.equal(words.length, counts.length);
+        assert.ok(words.every(word => word.length === length));
         assert.ok(counts.every(count => Number.isSafeInteger(count) && count > 0));
+    }
+
+    const gameElements = new Map();
+    const gameElement = id => {
+        if (!gameElements.has(id)) gameElements.set(id, element());
+        return gameElements.get(id);
+    };
+    const game = load({
+        console: { error() {} },
+        document: { getElementById: gameElement, querySelector: () => element() },
+        fetch: async file => ({ ok: true, text: async () => fs.readFileSync(path.join(root, file), 'utf8') }),
+    }, ['hangman/hangman.js']);
+    for (const length of [16, 17, 18, 4]) {
+        gameElement('num_of_chars_box').value = String(length);
+        await game.startGame();
+        assert.equal(game.numOfChars, length);
+        assert.equal(game.getCurrentState().length, length);
+        for (let position = 1; position <= 18; position++) {
+            assert.equal(gameElement(`letter${position}`).style.display, position <= length ? 'inline-flex' : 'none');
+        }
+        game.guessNext();
+        const letter = gameElement('guessed-letter').textContent;
+        assert.match(letter, /^[a-z]$/);
+        const target = game.wordsArray[0];
+        for (let position = 0; position < length; position++) {
+            if (target[position] === letter) game.replaceLetter(String(position + 1));
+        }
+        assert.ok(game.getMatchingWords(game.getCurrentState())[0].includes(target));
     }
 
     for (const [pathname, expectedPath] of [['/sdr/', '/projects'], ['/hangman/index.html', '/projects'], ['/language/', '/projects'], ['/movie/', '/projects'], ['/enigma/', '/enigma'], ['/', '/']]) {
@@ -156,7 +185,7 @@ async function run() {
                 querySelectorAll: selector => selector.includes('.nav') ? nav : [],
                 getElementById: () => element(), addEventListener() {},
             },
-        }, ['js/common.js']);
+        }, ['js/site.js']);
         assert.deepEqual(nav.filter(link => link.attributes['aria-current']).map(link => link.linkPath), [expectedPath]);
     }
     return 'Runtime checks passed: session/encoding caches, retries, generation, LSTM output mapping, vocabulary, sampling, and parent navigation.';

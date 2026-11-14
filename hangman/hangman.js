@@ -1,4 +1,6 @@
 var numOfChars = 7;
+const MIN_WORD_LENGTH = 4;
+const MAX_WORD_LENGTH = 18;
 var cost = 0;
 var lastGuess = '_';
 
@@ -20,16 +22,16 @@ async function startGame() {
     if (isNaN(requestedLength)) {
         requestedLength = 7;
     }
-    if (requestedLength < 4) {
-        requestedLength = 4;
+    if (requestedLength < MIN_WORD_LENGTH) {
+        requestedLength = MIN_WORD_LENGTH;
     }
-    if (requestedLength > 15) {
-        requestedLength = 15;
+    if (requestedLength > MAX_WORD_LENGTH) {
+        requestedLength = MAX_WORD_LENGTH;
     }
     numOfCharsBox.value = requestedLength;
 
-    var wordsFileName = `/hangman/vocab/words_${requestedLength}.txt`;
-    var countsFileName = `/hangman/vocab/counts_${requestedLength}.txt`;
+    var wordsFileName = `/hangman/vocab/words-${requestedLength}.txt`;
+    var countsFileName = `/hangman/vocab/counts-${requestedLength}.txt`;
 
     // initialize the words and counts array
     vocabularyLoading = true;
@@ -54,7 +56,7 @@ async function startGame() {
 
     // Do not reset the visible game until its new vocabulary has loaded.
     numOfChars = requestedLength;
-    for (var i = 1; i <= 15; i++) {
+    for (var i = 1; i <= MAX_WORD_LENGTH; i++) {
         var letterIdx = document.getElementById('letter' + i);
         letterIdx.style.display = i <= numOfChars ? 'inline-flex' : 'none';
         letterIdx.innerHTML = '_';

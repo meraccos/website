@@ -33,18 +33,18 @@ function getSession(file) {
 
 function getModel(model, dataset) {
     if (dataset == 'nizami') {
-        MODEL.encodingFile =  '/language/encodings/enc_nizami.txt';
+        MODEL.encodingFile =  '/language/encodings/nizami.txt';
         if (model == 'bigram') {
-            MODEL.modelFile = '/language/models/bigram_nizami.onnx'
+            MODEL.modelFile = '/language/models/bigram-nizami.onnx'
         } else {
-            MODEL.modelFile = '/language/models/lstm_nizami.onnx'
+            MODEL.modelFile = '/language/models/lstm-nizami.onnx'
         }
     } else if (dataset == 'shakespeare') {
-        MODEL.encodingFile =  '/language/encodings/enc_tinyshakespeare.txt';
+        MODEL.encodingFile =  '/language/encodings/shakespeare.txt';
         if (model == 'bigram') {
-            MODEL.modelFile = '/language/models/bigram_shakespeare.onnx'
+            MODEL.modelFile = '/language/models/bigram-shakespeare.onnx'
         } else {
-            MODEL.modelFile = '/language/models/lstm_shakespeare.onnx'
+            MODEL.modelFile = '/language/models/lstm-shakespeare.onnx'
         }
     }
 }

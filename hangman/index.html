@@ -20,11 +20,11 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="stylesheet" href="/css/fonts.css?v=1fe80119e6" />
-    <link rel="stylesheet" href="/css/skeleton.css?v=a1d18decdf" />
-  <link rel="stylesheet" href="/css/styles.css?v=56f8e8cbed" />
-  <link rel="stylesheet" href="/css/hangman.css?v=308413f5d8" />
-  <script src="/js/common.js?v=cb1f8279b5" defer></script>
-  <script src="/js/hangman.js?v=9572269509" defer></script>
+    <link rel="stylesheet" href="/css/layout.css?v=a1d18decdf" />
+  <link rel="stylesheet" href="/css/content.css?v=56f8e8cbed" />
+  <link rel="stylesheet" href="/hangman/hangman.css?v=308413f5d8" />
+  <script src="/js/site.js?v=cb1f8279b5" defer></script>
+  <script src="/hangman/hangman.js?v=be0108c42e" defer></script>
 </head>
   <body>
     <header>
@@ -67,10 +67,10 @@
       <div class="hangman">
         <div class="settings">
           <div class="setup-copy">
-            <h3 class="game-label" id="dt">Think of a word with 4–15 letters and keep it to yourself.</h3>
+            <h3 class="game-label" id="dt">Think of a word with 4–18 letters and keep it to yourself.</h3>
             <div class="setting">
               <label for="num_of_chars_box">Word length</label>
-              <input type="number" min="4" max="15" step="1" inputmode="numeric" aria-describedby="dt" class="num_of_chars_box" id="num_of_chars_box" placeholder="7" />
+              <input type="number" min="4" max="18" step="1" inputmode="numeric" aria-describedby="dt" class="num_of_chars_box" id="num_of_chars_box" placeholder="7" />
             </div>
           </div>
 
@@ -98,6 +98,9 @@
           <button class="letter" id="letter13" aria-label="Position 13" aria-pressed="false" onclick="replaceLetter('13')">_</button>
           <button class="letter" id="letter14" aria-label="Position 14" aria-pressed="false" onclick="replaceLetter('14')">_</button>
           <button class="letter" id="letter15" aria-label="Position 15" aria-pressed="false" onclick="replaceLetter('15')">_</button>
+          <button class="letter" id="letter16" aria-label="Position 16" aria-pressed="false" onclick="replaceLetter('16')">_</button>
+          <button class="letter" id="letter17" aria-label="Position 17" aria-pressed="false" onclick="replaceLetter('17')">_</button>
+          <button class="letter" id="letter18" aria-label="Position 18" aria-pressed="false" onclick="replaceLetter('18')">_</button>
         </div>
 
 

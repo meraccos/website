@@ -19,11 +19,11 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="stylesheet" href="/css/fonts.css?v=1fe80119e6" />
-    <link rel="stylesheet" href="/css/skeleton.css?v=a1d18decdf" />
-    <link rel="stylesheet" href="/css/styles.css?v=56f8e8cbed" />
-    <link rel="stylesheet" href="/css/language-model.css?v=7aa228fdd7" />
-    <script src="/js/nn_common.js?v=6435e0e193"></script>
-    <script src="/js/common.js?v=cb1f8279b5" defer></script>
+    <link rel="stylesheet" href="/css/layout.css?v=a1d18decdf" />
+    <link rel="stylesheet" href="/css/content.css?v=56f8e8cbed" />
+    <link rel="stylesheet" href="/language/language.css?v=7aa228fdd7" />
+    <script src="/language/language.js?v=dfab5dbaa2"></script>
+    <script src="/js/site.js?v=cb1f8279b5" defer></script>
   </head>
 
   <body>
@@ -71,14 +71,14 @@
       <div class="switch" id="switch1" role="group" aria-labelledby="model-label">
         <button
           onclick="switchModel('bigram')"
-          class="button left"
+          class="button"
           id="bigram-button"
         >
           Bigram
         </button>
         <button
           onclick="switchModel('lstm')"
-          class="button right"
+          class="button"
           id="lstm-button"
         >
           LSTM
@@ -92,14 +92,14 @@
       <div class="switch" id="switch2" role="group" aria-labelledby="dataset-label">
         <button
           onclick="switchDataset('nizami')"
-          class="button left"
+          class="button"
           id="nizami-button"
         >
           Nizami
         </button>
         <button
           onclick="switchDataset('shakespeare')"
-          class="button right"
+          class="button"
           id="shakespeare-button"
         >
           Shakespeare
@@ -135,8 +135,8 @@
 
       <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/ort.min.js" integrity="sha384-Gcu8U60SCeoyIiwfPwFy+eRexUuRRE9UYEXcm6vLDFVkGxcB1kk/gTv9FKTgoA6h" crossorigin="anonymous"></script>
     <script src="/js/onnx-config.js?v=fde83898fb"></script>
-      <script src="/js/bigram.js?v=f70853a8a4"></script>
-      <script src="/js/lstm.js?v=87c0a9c841"></script>
+      <script src="/language/bigram.js?v=f70853a8a4"></script>
+      <script src="/language/lstm.js?v=87c0a9c841"></script>
     </main>
     <footer>
       <p>&copy; <span data-copyright-year>2026</span> Meraj Mammadov</p>
