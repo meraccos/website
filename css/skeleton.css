@@ -12,6 +12,7 @@
     --surface-hover: #3a3a3a;
     --strong-text: #c6c6c6;
     --accent: #8ab4e8;
+    --link-color: #a8b8c8;
     --site-content-width: 820px;
     --site-top-space: 48px;
 }
@@ -89,13 +90,13 @@ header .site-title a {
 
 body a {
     text-decoration: none;
-    color: var(--accent);
+    color: var(--link-color);
 }
 
 body .content a,
 .sdr-article > p a {
     text-decoration: none;
-    color: var(--accent);
+    color: var(--link-color);
 }
 
 body .content a:hover,
