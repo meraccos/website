@@ -1,6 +1,6 @@
 .sdr-article {
     margin-top: 44px;
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 1.7;
 }
 
@@ -32,7 +32,7 @@
 
 @media (max-width: 768px) {
     .sdr-article {
-        font-size: 17px;
+        font-size: 1.0625rem;
     }
 
     .sdr-article > p {

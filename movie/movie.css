@@ -34,14 +34,14 @@
 .sliders,
 .values {
     display: grid;
-    grid-template-rows: repeat(18, 36px);
+    grid-template-rows: repeat(18, 2.25rem);
     align-items: center;
     min-width: 0;
 }
 
 .genre {
     margin: 0;
-    font-size: 15px;
+    font-size: 0.9375rem;
 }
 
 .slider {
@@ -104,7 +104,7 @@
 .value {
     text-align: right;
     color: var(--muted-text);
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-variant-numeric: tabular-nums;
 }
 
@@ -154,7 +154,7 @@
 
 .outputs:has(.outbox:nth-child(2) .movie_name:not(:empty)) {
     display: grid;
-    grid-template-rows: 56px repeat(10, minmax(min-content, 1fr));
+    grid-template-rows: 3.5rem repeat(10, minmax(min-content, 1fr));
 }
 
 .outbox {
@@ -164,13 +164,13 @@
     align-items: center;
     padding: 0;
     border-bottom: 1px solid #353535;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.5;
 }
 
 .outbox:first-child {
     box-sizing: border-box;
-    height: 56px;
+    height: 3.5rem;
     padding: 8px 0;
     color: var(--muted-text);
     font-weight: 400;
@@ -187,7 +187,7 @@
     width: 100%;
     justify-self: stretch;
     color: var(--muted-text);
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.25;
     text-align: center;
 }
@@ -217,7 +217,7 @@
 
 .outbox:first-child .movie_name {
     color: var(--muted-text);
-    font-size: 15px;
+    font-size: 0.9375rem;
 }
 
 .rating,
@@ -239,7 +239,7 @@
     display: block;
     padding: 24px 0;
     color: var(--muted-text);
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.6;
 }
 
@@ -258,7 +258,7 @@
     .genres,
     .sliders,
     .values {
-        grid-template-rows: repeat(18, 44px);
+        grid-template-rows: repeat(18, 2.75rem);
     }
 
     .slider {
@@ -271,12 +271,12 @@
     }
 
     .outputs:has(.outbox:nth-child(2) .movie_name:not(:empty)) {
-        grid-template-rows: 56px repeat(10, minmax(56px, auto));
+        grid-template-rows: 3.5rem repeat(10, minmax(3.5rem, auto));
     }
 
     .outbox {
         gap: 8px;
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 }
 
@@ -288,7 +288,7 @@
 .movie-status {
     margin: 10px 0 0;
     color: var(--muted-text);
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.6;
 }
 
