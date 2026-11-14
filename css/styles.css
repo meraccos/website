@@ -181,6 +181,14 @@ main img {
     font-weight: 700;
 }
 
+.publication-paper {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+}
+
 .animation {
     display: flex;
     align-items: center;
