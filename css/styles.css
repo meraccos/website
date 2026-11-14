@@ -460,6 +460,35 @@ li {
     font-variant-numeric: tabular-nums;
 }
 
+.problem-illustration {
+    display: block;
+    position: relative;
+    left: -26px;
+    margin: 12px auto 4px;
+    width: min(100%, 200px);
+    height: auto;
+}
+
+.rope-illustration,
+.north-pole-illustration,
+.weird-planet-illustration,
+.reflect-refract-illustration,
+.field-trajectory-illustration,
+.sword-impact-illustration,
+.planetary-deflection-illustration,
+.abc-probability-illustration {
+    filter: invert(1);
+    opacity: 0.82;
+}
+
+.reflect-refract-illustration {
+    width: min(100%, 340px);
+}
+
+.planetary-deflection-illustration {
+    width: min(100%, 308px);
+}
+
 .enigma-page > #references {
     margin-top: 32px;
     color: #999;
@@ -470,6 +499,10 @@ li {
 @media (max-width: 768px) {
     .enigma-page > .problem > li {
         padding-left: 38px;
+    }
+
+    .problem-illustration {
+        left: -19px;
     }
 }
 
