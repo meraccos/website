@@ -4,20 +4,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="An interactive Hangman game that uses information theory to find your guessed word." />
+  <meta name="description" content="An interactive Hangman game that uses information theory to guess your word." />
   <meta property="og:title" content="Hangman | Meraj Mammadov" />
-  <meta property="og:description" content="An interactive Hangman game that uses information theory to find your guessed word." />
+  <meta property="og:description" content="An interactive Hangman game that uses information theory to guess your word." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://merajmammadov.com/hangman/" />
   <meta property="og:image" content="https://merajmammadov.com/media/meraj.jpg" />
   <meta property="og:site_name" content="Meraj Mammadov" />
-  <title>Hangman Game | Meraj Mammadov</title>
+  <title>Information-Theoretic Hangman | Meraj Mammadov</title>
     <link rel="canonical" href="https://merajmammadov.com/hangman/" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="stylesheet" href="/css/skeleton.css?v=20261111-21" />
   <link rel="stylesheet" href="/css/styles.css?v=20261111-21" />
-  <link rel="stylesheet" href="/css/hangman.css?v=20261111-22" />
+  <link rel="stylesheet" href="/css/hangman.css?v=20261114-23" />
   <script src="/js/common.js?v=20261111-3" defer></script>
   <script src="/js/hangman.js?v=20261111-4" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;display=swap" rel="stylesheet" type="text/css" />
@@ -56,7 +55,7 @@
       </div>
       <section class="content">
         <p>
-          A Hangman agent that uses information theory to choose which letter to guess next.
+          A Hangman agent that uses information theory to choose each guess. It selects the letter with the highest expected information gain.
         </p>
 
       </section>
@@ -71,12 +70,11 @@
           </div>
 
           <div class="setting">
-            <button class="button" id="start-button" onclick="startGame()">Start Game</button>
+            <button class="button" id="start-button" onclick="startGame()">Start game</button>
           </div>
         </div>
 
-        <h3 class="game-label hide_at_start" id="dt2">Select the matching positions</h3>
-        <p class="game-hint hide_at_start">Press Next guess, then select every matching position. If the letter is absent, select none. Press Next guess again to continue.</p>
+        <p class="game-hint hide_at_start" id="dt2">Press Next guess, mark all matches, then press it again to continue.</p>
 
         <div class="display hide_at_start">
           <button class="letter" id="letter1" aria-label="Position 1" aria-pressed="false" onclick="replaceLetter('1')">_</button>
@@ -100,12 +98,12 @@
         <div class="guess_and_cost">
           <div class="game_status_and_guess hide_at_start">
             <div class="cost hide_at_start">
-              <p class="hide_at_start" >Incorrect guesses </p>
+              <p class="hide_at_start">Incorrect guesses</p>
               <p class="hide_at_start" id="cost">0</p>
             </div>
 
             <div class="entropy hide_at_start" title="Uncertainty over the remaining words, measured in bits">
-            <p class=" hide_at_start">Entropy (bits) </p>
+              <p class="hide_at_start">Entropy (bits)</p>
               <p class="hide_at_start" id="entropy">0</p>
             </div>
 
