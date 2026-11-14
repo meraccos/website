@@ -131,7 +131,7 @@ main img {
     padding-bottom: 10px;
 }
 
-.section-heading h2 {
+.section-heading :is(h1, h2) {
     margin: 0;
     color: #e5e5e5;
     font-size: 24px;
@@ -408,7 +408,7 @@ li {
         margin-top: 44px;
     }
 
-    .section-heading h2 {
+    .section-heading :is(h1, h2) {
         font-size: 22px;
     }
 
@@ -552,8 +552,8 @@ li {
     }
 }
 
-.project-page > .section-heading h2,
-.sdr-article > .section-heading h2 {
+.project-page > .section-heading :is(h1, h2),
+.sdr-article > .section-heading :is(h1, h2) {
     font-size: 21px;
     font-weight: 400;
     color: #e5e5e5;

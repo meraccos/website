@@ -53,23 +53,25 @@ body > footer {
     body::after { grid-row: 4; }
     body > footer { grid-row: 5; }
 
-    header h1 {
+    header .site-title {
         margin-top: 0;
         padding-top: 0;
     }
 }
 
-h1 {
+.site-title {
+    margin-top: 0.67em;
     font-size: 38px;
+    font-weight: 700;
     text-align: left;
     padding-top: 70px;
 }
 
-header h1 {
+header .site-title {
     margin-bottom: 16px;
 }
 
-header h1 a {
+header .site-title a {
     color: #e5e5e5;
 }
 
@@ -170,7 +172,7 @@ footer {
         --site-top-space: 0px;
     }
 
-    h1 {
+    .site-title {
         font-size: 35px;
         padding-top: 50px;
         margin-bottom: 16px;
