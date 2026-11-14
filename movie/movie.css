@@ -27,6 +27,7 @@
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) 4ch;
     gap: 16px;
+    padding-block: 14px;
 }
 
 .genres,
@@ -172,7 +173,6 @@
     height: 56px;
     padding: 8px 0;
     color: #999;
-    font-size: 13px;
     font-weight: 400;
     border-bottom-color: #505050;
 }
@@ -184,9 +184,10 @@
 .outbox:first-child .align,
 .outbox:first-child .rating {
     display: block;
-    width: max-content;
-    justify-self: end;
+    width: 100%;
+    justify-self: stretch;
     color: #999;
+    font-size: 13px;
     line-height: 1.25;
     text-align: center;
 }
@@ -221,15 +222,11 @@
 
 .rating,
 .align {
-    justify-self: end;
-    text-align: right;
+    justify-self: stretch;
+    text-align: center;
     color: #d5d5d5;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
-}
-
-.rating {
-    padding-right: 3px;
 }
 
 .index {
@@ -255,7 +252,7 @@
 
     #inputs-box {
         gap: 12px;
-        padding: 16px;
+        padding: 6px 16px;
     }
 
     .genres,
