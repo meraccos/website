@@ -222,7 +222,16 @@ footer {
         column-gap: 16px;
         padding-bottom: 8px;
         background: var(--page-bg);
-        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    body > header::after {
+        content: "";
+        position: absolute;
+        top: 60px;
+        right: 0;
+        left: 0;
+        height: 1px;
+        background: var(--border-subtle);
     }
 
     footer {
