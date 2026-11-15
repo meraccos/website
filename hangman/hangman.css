@@ -141,7 +141,7 @@
     height: 3rem;
     margin: 0;
     padding: 0;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-subtle);
     border-radius: 8px;
     background: transparent;
     color: var(--heading-text);
@@ -178,7 +178,7 @@
 
 .hangman.is-playing .guess_and_cost {
     position: absolute;
-    top: 38px;
+    top: 48px;
     right: 0;
     margin: 0;
     padding: 0;
@@ -199,6 +199,8 @@
     color: var(--muted-text);
     font-size: 0.75rem;
     line-height: 1.5;
+    text-align: right;
+    min-width: 3.5rem;
 }
 
 .hangman .cost p,
@@ -229,7 +231,7 @@
     justify-content: center;
     gap: 12px;
     min-width: 7.5rem;
-    height: 3.5rem;
+    height: 2.875rem;
     padding: 0 16px;
     border-color: #4a4a4a;
     background: var(--surface);
@@ -237,6 +239,10 @@
     grid-column: 1;
     grid-row: 1;
     order: 1;
+}
+
+.hangman .desktop-guess-label {
+    color: var(--heading-text);
 }
 
 .hangman #guessed-letter {
@@ -341,7 +347,7 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        height: 3rem;
+        height: 2.875rem;
         padding: 0 10px;
         border: 1px solid #4a4a4a;
         border-radius: 8px;
@@ -363,7 +369,7 @@
     }
 
     .hangman .mobile-current-guess span:first-child {
-        color: var(--body-text);
+        color: var(--heading-text);
         font-size: 0.9375rem;
     }
 
@@ -377,6 +383,50 @@
 
     .hangman.is-playing #guess-button {
         display: none;
+    }
+}
+
+.hangman.is-playing .word-actions {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin-top: 16px;
+    order: 3;
+}
+
+.hangman.is-playing .word-actions .display {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+}
+
+.hangman.is-playing #guess-button {
+    display: inline-flex;
+    flex: 0 0 auto;
+    grid-column: auto;
+    grid-row: auto;
+    order: 0;
+    width: auto;
+    min-width: 0;
+    height: 3rem;
+    gap: 8px;
+}
+
+.hangman.is-playing .game_status_and_guess {
+    grid-column: 1;
+}
+
+.hangman .current-guess {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--heading-text);
+}
+
+@media (max-width: 48rem) {
+    .hangman.is-playing #guess-button {
+        height: 2.875rem;
+        padding: 0 12px;
     }
 }
 

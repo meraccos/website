@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="/css/fonts.css?v=1fe80119e6" />
     <link rel="stylesheet" href="/css/layout.css?v=97d5192710" />
   <link rel="stylesheet" href="/css/content.css?v=8ac3ee3eaf" />
-  <link rel="stylesheet" href="/hangman/hangman.css?v=6b824dc193" />
+  <link rel="stylesheet" href="/hangman/hangman.css?v=c734df102a" />
   <script src="/js/site.js?v=ffd2e4b681" defer></script>
   <script src="/hangman/hangman.js?v=d8bf0d176c" defer></script>
 </head>
@@ -77,6 +77,7 @@
 
         <p class="game-hint" id="hangman-status" role="status"></p>
         <div class="play-row hide_at_start">
+          <div class="word-actions">
           <div class="display">
           <button class="letter" id="letter1" aria-label="Position 1" aria-pressed="false" onclick="replaceLetter('1')">_</button>
           <button class="letter" id="letter2" aria-label="Position 2" aria-pressed="false" onclick="replaceLetter('2')">_</button>
@@ -97,12 +98,14 @@
           <button class="letter" id="letter17" aria-label="Position 17" aria-pressed="false" onclick="replaceLetter('17')">_</button>
           <button class="letter" id="letter18" aria-label="Position 18" aria-pressed="false" onclick="replaceLetter('18')">_</button>
           </div>
+          </div>
 
           <div class="guess_and_cost">
             <div class="game_status_and_guess">
-              <button class="mobile-current-guess" type="button" onclick="guessNext()">
-                <span>Guess:</span>
-                <span id="mobile-guessed-letter">_</span>
+              <button class="button current-guess" id="guess-button" onclick="guessNext()">
+                <span>Guess</span>
+                <span id="guessed-letter" aria-live="polite">_</span>
+                <span id="mobile-guessed-letter" hidden>_</span>
               </button>
               <div class="cost">
                 <p>Misses</p>
@@ -114,11 +117,6 @@
                 <p id="entropy">0</p>
               </div>
             </div>
-            <button class="button" id="guess-button" onclick="guessNext()">
-              <span class="desktop-guess-label">Guess</span>
-              <span class="mobile-guess-label">Continue</span>
-              <span id="guessed-letter" aria-live="polite">_</span>
-            </button>
           </div>
           <div class="play-instructions" id="dt2">
             <p class="game-hint">Mark every match, then press Guess.</p>
