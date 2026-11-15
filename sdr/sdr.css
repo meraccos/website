@@ -10,6 +10,7 @@
 
 /* Same paragraph rhythm as .content on your other pages */
 .sdr-article > p {
+    max-width: 68ch;
     margin: 0 0 20px;
     text-align: left;
 }

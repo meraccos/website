@@ -7,12 +7,20 @@
     margin-top: 20px;
 }
 
+.homepage-title {
+    display: none;
+}
+
 .content > p {
     margin: 0 0 20px;
 }
 
 .content > p:last-child {
     margin-bottom: 0;
+}
+
+body:not(.home-page) .content {
+    max-width: 68ch;
 }
 
 .side-projects,
@@ -119,7 +127,7 @@ main img {
 }
 
 .section-heading {
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-subtle);
     padding-bottom: 10px;
 }
 
@@ -136,6 +144,33 @@ main img {
 
 .section-heading h2 {
     font-size: 1.5rem;
+}
+
+@media (min-width: 769px) {
+    body > main {
+        margin-top: 32px;
+    }
+
+    body.home-page > main {
+        margin-top: 48px;
+    }
+
+    .homepage-title {
+        display: block;
+        margin: 0;
+        color: var(--heading-text);
+        font-size: 2.375rem;
+        line-height: 1.2;
+    }
+
+    body:not(.home-page) .section-heading {
+        padding-bottom: 0;
+        border-bottom: 0;
+    }
+
+    body:not(.home-page) .section-heading h1 {
+        font-size: 2rem;
+    }
 }
 
 .publication-list {
@@ -157,7 +192,7 @@ main img {
 }
 
 .publication-title {
-    color: var(--body-text);
+    color: var(--heading-text);
     line-height: 1.45;
 }
 

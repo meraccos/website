@@ -113,6 +113,48 @@ header .site-title a:hover {
     color: var(--heading-text);
 }
 
+@media (min-width: 769px) {
+    body {
+        --site-top-space: 8px;
+    }
+
+    body:not(.home-page) {
+        --site-content-width: 740px;
+    }
+
+    body > header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 32px;
+        padding-bottom: 8px;
+        background: var(--page-bg);
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .site-title {
+        flex: none;
+        margin-bottom: 0;
+        font-size: 1.125rem;
+    }
+
+    header .site-title a {
+        color: var(--body-text);
+    }
+
+    .nav {
+        flex: none;
+        gap: 20px;
+    }
+
+    .nav a {
+        font-size: 1rem;
+    }
+}
+
 .menu-button {
     display: flex;
     flex-direction: column;
