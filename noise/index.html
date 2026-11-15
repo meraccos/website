@@ -35,15 +35,13 @@
   </style>
 </head>
 <body>
-  <button id="start" hidden>Tap to play noise</button>
   <div class="sleep" aria-hidden="true"><span>z</span><span>z</span><span>Z</span></div>
-  <button class="playback" id="pause" aria-label="Pause noise" hidden><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M26 7a14 14 0 1 0 7 23A15 15 0 0 1 26 7Z" fill="currentColor"/><path d="M11 22q2 2 4 0m4 0q2 2 4 0" fill="none" stroke="#566078" stroke-width="1.5" stroke-linecap="round"/><path d="m31 8 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" fill="#a9bfd4"/></svg></button>
+  <button class="playback" id="pause" aria-label="Play noise" aria-pressed="false"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M26 7a14 14 0 1 0 7 23A15 15 0 0 1 26 7Z" fill="currentColor"/><path d="M11 22q2 2 4 0m4 0q2 2 4 0" fill="none" stroke="#566078" stroke-width="1.5" stroke-linecap="round"/><path d="m31 8 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" fill="#a9bfd4"/></svg></button>
   <audio id="audio" src="/noise/continuous.m4a" loop preload="auto"></audio>
   <script>
-    const button = document.getElementById('start');
     const audio = document.getElementById('audio');
     const pauseButton = document.getElementById('pause');
-    pauseButton.addEventListener('click', () => audio.pause());
+    pauseButton.addEventListener('click', () => audio.paused ? play() : audio.pause());
     if (navigator.audioSession) navigator.audioSession.type = 'playback';
     if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({ title: 'Noise' });
@@ -53,29 +51,26 @@
     async function play() {
       try {
         await audio.play();
-        button.hidden = true;
+        pauseButton.setAttribute('aria-label', 'Pause noise');
       } catch {
-        button.hidden = false;
+        pauseButton.setAttribute('aria-label', 'Play noise');
       }
     }
     audio.addEventListener('playing', () => {
-      button.hidden = true;
-      pauseButton.hidden = false;
+      pauseButton.setAttribute('aria-label', 'Pause noise');
+      pauseButton.setAttribute('aria-pressed', 'true');
       document.body.classList.add('is-playing');
     });
     audio.addEventListener('pause', () => {
-      button.hidden = false;
-      button.textContent = 'Resume noise';
-      pauseButton.hidden = true;
+      pauseButton.setAttribute('aria-label', 'Play noise');
+      pauseButton.setAttribute('aria-pressed', 'false');
       document.body.classList.remove('is-playing');
     });
     audio.addEventListener('error', () => {
-      pauseButton.hidden = true;
+      pauseButton.setAttribute('aria-label', 'Retry playing noise');
+      pauseButton.setAttribute('aria-pressed', 'false');
       document.body.classList.remove('is-playing');
-      button.textContent = 'Tap to retry';
-      button.hidden = false;
     });
-    button.addEventListener('click', play);
     play();
   </script>
 </body>
