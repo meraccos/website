@@ -11,11 +11,27 @@
     button { padding:16px 24px; border:1px solid #444; border-radius:8px; background:transparent; color:inherit; font:inherit; cursor:pointer; }
     button[hidden] { display:none; }
     button:focus-visible { outline:2px solid #8ab4e8; outline-offset:4px; }
+    .sleep { position:relative; width:100px; height:120px; display:none; user-select:none; pointer-events:none; }
+    body.is-playing .sleep { display:block; }
+    .sleep span { position:absolute; bottom:16px; left:22px; color:#8190a5; font-size:28px; font-weight:300; opacity:0; animation:drift 6s linear infinite; }
+    .sleep span:nth-child(2) { animation-delay:2s; }
+    .sleep span:nth-child(3) { animation-delay:4s; }
+    @keyframes drift {
+      0% { opacity:0; transform:translate(0,0) scale(.7) rotate(-8deg); }
+      20% { opacity:.45; }
+      70% { opacity:.3; }
+      100% { opacity:0; transform:translate(36px,-80px) scale(1.15) rotate(8deg); }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .sleep span { animation:none; opacity:.35; position:static; }
+      .sleep { align-content:center; text-align:center; }
+    }
   </style>
 </head>
 <body>
   <button id="start" hidden>Tap to play noise</button>
-  <audio id="audio" src="/noise/loop.wav" loop preload="auto"></audio>
+  <div class="sleep" aria-hidden="true"><span>z</span><span>z</span><span>Z</span></div>
+  <audio id="audio" src="/noise/continuous.m4a" loop preload="auto"></audio>
   <script>
     const button = document.getElementById('start');
     const audio = document.getElementById('audio');
@@ -33,9 +49,16 @@
         button.hidden = false;
       }
     }
-    audio.addEventListener('playing', () => { button.hidden = true; });
-    audio.addEventListener('pause', () => { button.hidden = false; });
+    audio.addEventListener('playing', () => {
+      button.hidden = true;
+      document.body.classList.add('is-playing');
+    });
+    audio.addEventListener('pause', () => {
+      button.hidden = false;
+      document.body.classList.remove('is-playing');
+    });
     audio.addEventListener('error', () => {
+      document.body.classList.remove('is-playing');
       button.textContent = 'Tap to retry';
       button.hidden = false;
     });
