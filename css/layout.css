@@ -115,7 +115,7 @@ header .site-title a:hover {
 
 @media (min-width: 769px) {
     body {
-        --site-top-space: 8px;
+        --site-top-space: 12px;
     }
 
     body:not(.home-page) {
@@ -130,7 +130,7 @@ header .site-title a:hover {
         align-items: baseline;
         justify-content: space-between;
         gap: 32px;
-        padding-bottom: 8px;
+        padding-bottom: 12px;
         background: var(--page-bg);
         border-bottom: 1px solid var(--border-subtle);
     }
