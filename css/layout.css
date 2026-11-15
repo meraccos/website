@@ -1,7 +1,7 @@
 /* Shared portfolio layout: adjust these values for every portfolio page. */
 :root {
     color-scheme: dark;
-    --page-bg: #050505;
+    --page-bg: #000000;
     --panel-bg: #202020;
     --heading-text: #e8e8e8;
     --body-text: #c8c8c8;
@@ -12,7 +12,9 @@
     --surface-hover: #3a3a3a;
     --strong-text: #c6c6c6;
     --accent: #8ab4e8;
-    --link-color: #a8b8c8;
+    --link-color: #8fa3d6;
+    --link-hover: #b4c2ea;
+    --link-underline: rgba(143, 163, 214, 0.5);
     --site-content-width: 820px;
     --site-top-space: 118px;
 }
@@ -71,13 +73,17 @@ body .content a,
 
 body .content a:hover,
 .sdr-article > p a:hover {
-    color: var(--heading-text);
+    color: var(--link-hover);
     text-decoration: underline;
+    text-decoration-color: var(--link-underline);
 }
 
 body a:hover,
 .nav a:hover {
+    color: var(--link-hover);
     text-decoration: underline;
+    text-decoration-color: var(--link-underline);
+    text-underline-offset: 3px;
 }
 
 .nav {
@@ -95,6 +101,10 @@ body a:hover,
 }
 
 .nav a:hover {
+    color: var(--heading-text);
+}
+
+header .site-title a:hover {
     color: var(--heading-text);
 }
 
