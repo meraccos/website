@@ -83,6 +83,9 @@ async function startGame() {
     // log the cost
     var costElement = document.getElementById('cost');
     costElement.innerHTML = cost;
+
+    // Start each round with the algorithm's first guess ready to answer.
+    guessNext();
 }
 
 function guessNext() {
