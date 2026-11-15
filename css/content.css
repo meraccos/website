@@ -224,14 +224,12 @@ main img {
     white-space: nowrap;
 }
 
-.animation.error {
-    display: flex;
-    align-items: center;
-    object-fit: cover;
-    overflow: hidden;
-    justify-content: center;
-    padding-top: 15px;
-    height: 300px;
+.error-code {
+    margin: 0 0 12px;
+    color: var(--muted-text);
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 768px) {
@@ -465,6 +463,23 @@ main img {
     font-size: 1.3125rem;
     font-weight: 400;
     color: var(--heading-text);
+}
+
+.project-page > .section-heading,
+.not-found-page > .section-heading,
+.enigma-page > .section-heading,
+.quotes-page > .section-heading,
+.side-projects > .section-heading {
+    margin-bottom: 28px;
+    line-height: 1.7;
+}
+
+.project-page > .section-heading + .content,
+.not-found-page > .section-heading + .content,
+.enigma-page > .section-heading + .content,
+.quotes-page > .section-heading + .content,
+.side-projects > .section-heading + .content {
+    margin-top: 0;
 }
 
 .project-list {
