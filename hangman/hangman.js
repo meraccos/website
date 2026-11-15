@@ -73,6 +73,7 @@ async function startGame() {
     document.querySelector('.hangman').classList.add('is-playing');
     document.getElementById('start-button').textContent = 'Restart';
     document.getElementById('guessed-letter').textContent = '_';
+    document.getElementById('mobile-guessed-letter').textContent = '_';
     document.getElementById('entropy').textContent = '0';
 
     // init the vars
@@ -150,6 +151,7 @@ function guessNext() {
     // log the guess
     var guess = document.getElementById('guessed-letter');
     guess.textContent = nextGuess;
+    document.getElementById('mobile-guessed-letter').textContent = nextGuess;
     lastGuess = nextGuess;
 
     // log the cost
