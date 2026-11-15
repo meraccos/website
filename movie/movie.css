@@ -154,7 +154,15 @@
 
 .outputs:has(.outbox:nth-child(2) .movie_name:not(:empty)) {
     display: grid;
-    grid-template-rows: 3.5rem repeat(10, minmax(min-content, 1fr));
+    grid-template-rows: 3.5rem repeat(10, auto);
+}
+
+@media (min-width: 769px) {
+    #outputs-box {
+        /* Let the input panel determine the shared row height. */
+        contain: size;
+        overflow-y: auto;
+    }
 }
 
 .outbox {
