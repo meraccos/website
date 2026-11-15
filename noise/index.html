@@ -14,6 +14,9 @@
     button { padding:16px 24px; border:1px solid #444; border-radius:8px; background:transparent; color:inherit; font:inherit; cursor:pointer; }
     button[hidden] { display:none; }
     button:focus-visible { outline:2px solid #8ab4e8; outline-offset:4px; }
+    .playback { position:fixed; left:50%; top:calc(50% + 90px); transform:translateX(-50%); width:56px; height:56px; padding:0; display:grid; place-items:center; border-radius:22px; border:1px solid #dce6fa18; background:#222b3b; color:#e4e6de; box-shadow:0 4px 24px #8aa8de0c,inset 0 1px #ffffff08; transition:background .2s,box-shadow .2s; }
+    .playback:hover { background:#2b364a; box-shadow:0 4px 28px #8aa8de18; }
+    .playback svg { width:36px; height:36px; }
     .sleep { position:relative; width:100px; height:120px; display:none; user-select:none; pointer-events:none; }
     body.is-playing .sleep { display:block; }
     .sleep span { position:absolute; bottom:16px; left:22px; color:#8190a5; font-size:28px; font-weight:300; opacity:0; animation:drift 6s linear infinite; }
@@ -34,10 +37,13 @@
 <body>
   <button id="start" hidden>Tap to play noise</button>
   <div class="sleep" aria-hidden="true"><span>z</span><span>z</span><span>Z</span></div>
+  <button class="playback" id="pause" aria-label="Pause noise" hidden><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M26 7a14 14 0 1 0 7 23A15 15 0 0 1 26 7Z" fill="currentColor"/><path d="M11 22q2 2 4 0m4 0q2 2 4 0" fill="none" stroke="#566078" stroke-width="1.5" stroke-linecap="round"/><path d="m31 8 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" fill="#a9bfd4"/></svg></button>
   <audio id="audio" src="/noise/continuous.m4a" loop preload="auto"></audio>
   <script>
     const button = document.getElementById('start');
     const audio = document.getElementById('audio');
+    const pauseButton = document.getElementById('pause');
+    pauseButton.addEventListener('click', () => audio.pause());
     if (navigator.audioSession) navigator.audioSession.type = 'playback';
     if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({ title: 'Noise' });
@@ -54,13 +60,17 @@
     }
     audio.addEventListener('playing', () => {
       button.hidden = true;
+      pauseButton.hidden = false;
       document.body.classList.add('is-playing');
     });
     audio.addEventListener('pause', () => {
       button.hidden = false;
+      button.textContent = 'Resume noise';
+      pauseButton.hidden = true;
       document.body.classList.remove('is-playing');
     });
     audio.addEventListener('error', () => {
+      pauseButton.hidden = true;
       document.body.classList.remove('is-playing');
       button.textContent = 'Tap to retry';
       button.hidden = false;
