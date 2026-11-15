@@ -209,7 +209,20 @@ footer {
 
 @media (max-width: 768px) {
     :root {
-        --site-top-space: 72px;
+        --site-top-space: 8px;
+    }
+
+    body > header {
+        display: grid;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        grid-template-columns: minmax(0, 1fr) 44px;
+        align-items: center;
+        column-gap: 16px;
+        padding-bottom: 8px;
+        background: var(--page-bg);
+        border-bottom: 1px solid var(--border-subtle);
     }
 
     footer {
@@ -217,8 +230,13 @@ footer {
     }
 
     .site-title {
-        font-size: 2.1875rem;
-        text-align: center;
+        margin: 0;
+        font-size: 1.125rem;
+        text-align: left;
+    }
+
+    header .site-title a {
+        color: var(--body-text);
     }
     .desktop {
         display: none;
@@ -281,12 +299,14 @@ footer {
     }
 
     .mobile-menu {
-        min-height: 0;
-        justify-content: flex-start;
+        grid-column: 1 / -1;
+        box-sizing: border-box;
+        min-height: calc(100svh - 76px);
+        justify-content: center;
         align-items: center;
-        gap: 20px;
-        margin-top: 10px;
-        padding: 3vh 0 32px;
+        gap: 16px;
+        margin-top: 0;
+        padding: 24px 0 48px;
         text-align: center;
         font-size: 1.3125rem;
     }
