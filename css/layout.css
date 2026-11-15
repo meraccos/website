@@ -16,7 +16,7 @@
     --link-hover: #b4c2ea;
     --link-underline: rgba(143, 163, 214, 0.5);
     --site-content-width: 820px;
-    --site-top-space: 118px;
+    --site-top-space: 78px;
 }
 
 /* Reserve scrollbar space so navigation does not shift between pages. */
@@ -51,9 +51,21 @@ body > footer {
 
 .site-title {
     margin: 0 0 16px;
-    font-size: 2.375rem;
+    font-size: 1.5rem;
     font-weight: 700;
     text-align: left;
+}
+
+.home-page {
+    --site-top-space: 118px;
+}
+
+.reading-page {
+    --site-content-width: 740px;
+}
+
+.home-page .site-title {
+    font-size: 2.375rem;
 }
 
 header .site-title a {
