@@ -70,7 +70,6 @@
 }
 
 .language-model .switch .button[aria-pressed="true"] {
-    transform: none;
     background: var(--border-color);
     color: #f0f0f0;
     box-shadow: 0 1px 3px #0003;
@@ -110,10 +109,6 @@
     outline-offset: 3px;
 }
 
-.language-model .button.gen:active {
-    transform: none;
-}
-
 .language-model .button.gen {
     border-color: #4a4a4a;
     background: var(--border-color);
@@ -127,7 +122,6 @@
 }
 
 .language-model .button.gen:disabled {
-    transform: none;
     background: var(--surface);
     border-color: #363636;
     color: var(--muted-text);

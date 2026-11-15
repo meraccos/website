@@ -7,15 +7,11 @@ import tempfile
 from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
-ICONS = {
-    'movie': 'movies.svg',
-    'hangman': 'th_.svg',
-    'language': 'language.svg',
-    'satellite': 'satellite.svg',
-}
+PROJECTS = ('movie', 'hangman', 'language', 'satellite')
 
 with tempfile.TemporaryDirectory(prefix='project-previews-') as temporary:
-    for project, filename in ICONS.items():
+    for project in PROJECTS:
+        filename = 'icon.svg'
         source = ROOT / 'media' / project / filename
         subprocess.run(['qlmanage', '-t', '-s', '1000', '-o', temporary, str(source)],
                        check=True, stdout=subprocess.DEVNULL)
