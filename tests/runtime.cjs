@@ -176,7 +176,7 @@ async function run() {
         assert.ok(game.getMatchingWords(game.getCurrentState())[0].includes(target));
     }
 
-    for (const [pathname, expectedPath] of [['/sdr/', '/projects'], ['/hangman/index.html', '/projects'], ['/language/', '/projects'], ['/movie/', '/projects'], ['/enigma/', '/enigma'], ['/', '/']]) {
+    for (const [pathname, expectedPath] of [['/satellite/', '/projects'], ['/hangman/index.html', '/projects'], ['/language/', '/projects'], ['/movie/', '/projects'], ['/enigma/', '/enigma'], ['/', '/']]) {
         const nav = ['/', '/projects', '/enigma', '/quotes'].map(linkPath => Object.assign(element(), { href: `https://example.com${linkPath}`, linkPath }));
         load({
             URL, Date,

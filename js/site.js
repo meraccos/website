@@ -6,7 +6,7 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
 const currentPath = window.location.pathname.replace(/index\.html$/, '').replace(/\/$/, '') || '/';
-const projectPaths = ['/sdr', '/hangman', '/movie', '/language'];
+const projectPaths = ['/satellite', '/hangman', '/movie', '/language'];
 const activePath = projectPaths.includes(currentPath) ? '/projects' : currentPath;
 document.querySelectorAll('.nav a, .mobile-menu a').forEach((link) => {
     const linkPath = new URL(link.href).pathname.replace(/\/$/, '') || '/';

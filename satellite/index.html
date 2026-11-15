@@ -7,22 +7,22 @@
     <meta property="og:title" content="Receiving Images from Space | Meraj Mammadov" />
     <meta property="og:description" content="A project exploring antenna construction and weather satellite image reception using software-defined radio." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://merajmammadov.com/sdr/" />
-    <meta property="og:image" content="https://merajmammadov.com/media/sdr-weather-image.jpg" />
+    <meta property="og:url" content="https://merajmammadov.com/satellite/" />
+    <meta property="og:image" content="https://merajmammadov.com/media/satellite/sdr-weather-image.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:image:width" content="965" />
     <meta property="og:image:height" content="964" />
     <meta property="og:image:alt" content="An image of Earth received from the GK-2A weather satellite." />
     <meta property="og:site_name" content="Meraj Mammadov" />
     <title>Receiving Images from Space | Meraj Mammadov</title>
-    <link rel="canonical" href="https://merajmammadov.com/sdr/" />
+    <link rel="canonical" href="https://merajmammadov.com/satellite/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="stylesheet" href="/css/fonts.css?v=1fe80119e6" />
     <link rel="stylesheet" href="/css/layout.css?v=354432016c" />
-    <link rel="stylesheet" href="/css/content.css?v=a669596730" />
-    <link rel="stylesheet" href="/sdr/sdr.css?v=23ddc4567e" />
-    <script src="/js/site.js?v=cb1f8279b5" defer></script>
+    <link rel="stylesheet" href="/css/content.css?v=4b4f824562" />
+    <link rel="stylesheet" href="/satellite/satellite.css?v=23ddc4567e" />
+    <script src="/js/site.js?v=ffd2e4b681" defer></script>
   </head>
 
   <body class="reading-page">
@@ -64,7 +64,7 @@
         For around $40, a small USB device called software-defined radio (<a href="https://www.rtl-sdr.com/">SDR</a>) lets you receive signals across a much wider range and process them on your computer. Cool, right?
       </p>
       <figure class="sdr-receiver" style="--figure-width: 240px;">
-        <img src="/media/rtl-sdr.jpg" alt="RTL-SDR USB radio receiver" width="999" height="749" loading="lazy" decoding="async" />
+        <img src="/media/satellite/rtl-sdr.jpg" alt="RTL-SDR USB radio receiver" width="999" height="749" loading="lazy" decoding="async" />
         <figcaption>The RTL-SDR USB receiver.</figcaption>
       </figure>
 
@@ -78,25 +78,25 @@
      </p>
 
       <figure style="--figure-width: 500px;">
-        <img src="/media/sdr-dipole.jpg" alt="Dipole antenna on a tripod with an aluminum dish reflector" width="1600" height="1200" loading="lazy" decoding="async" />
+        <img src="/media/satellite/sdr-dipole.jpg" alt="Dipole antenna on a tripod with an aluminum dish reflector" width="1600" height="1200" loading="lazy" decoding="async" />
         <figcaption>The first setup: a dipole and an aluminum food container.</figcaption>
       </figure>
 
       <p>That didn't work, and I received no signal from the satellite at all. I decided to upgrade the antenna next, and built a Yagi-Uda antenna, with dimensions tuned to the satellite's transmission frequency. This is supposed to work a lot better than a dipole antenna.</p>
       <figure>
-        <img src="/media/sdr-yagi.png" alt="Homemade Yagi-Uda antenna" width="1600" height="1213" loading="lazy" decoding="async" />
+        <img src="/media/satellite/sdr-yagi.png" alt="Homemade Yagi-Uda antenna" width="1600" height="1213" loading="lazy" decoding="async" />
         <figcaption>The homemade Yagi-Uda antenna.</figcaption>
       </figure>
 
       <p>Still no signal. The next upgrade comes to the reflector. I picked up an old umbrella, covered its inside in aluminum foil, and placed my antenna on the axis where the signal reception was supposed to be the strongest. The direction you point the reflector can matter a lot for the reception strength. There are tools (dish pointers) to compute the exact angle you need! GK-2A was about 49° above the horizon from my location, which made my location quite a good one to receive its signal.</p>
       <figure class="sdr-portrait">
-        <img src="/media/sdr-umbrella.jpg" alt="Umbrella covered in aluminum foil used as a reflector" width="1200" height="1600" loading="lazy" decoding="async" />
+        <img src="/media/satellite/sdr-umbrella.jpg" alt="Umbrella covered in aluminum foil used as a reflector" width="1200" height="1600" loading="lazy" decoding="async" />
         <figcaption>A larger reflector, made from an old umbrella.</figcaption>
       </figure>
 
       <p>Aaand finally, a signal! GK-2A’s transmissions are encrypted, but the decryption keys are publicly available, so decoding the images is straightforward. They arrive in grayscale; after some post-processing, I got the image below. A new image comes through about every ten minutes, so the next step is to collect enough for a timelapse. That means spending more time outside with the setup, though, and Korean summers are <em>hot</em>. That will wait until the next season.</p>
       <figure class="sdr-result">
-        <img src="/media/sdr-weather-image.jpg" alt="Processed satellite image showing East Asia, Australia, and the Pacific" width="965" height="964" loading="lazy" decoding="async" />
+        <img src="/media/satellite/sdr-weather-image.jpg" alt="Processed satellite image showing East Asia, Australia, and the Pacific" width="965" height="964" loading="lazy" decoding="async" />
         <figcaption>An image received from GK-2A, after post-processing.</figcaption>
       </figure>
 
