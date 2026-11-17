@@ -136,15 +136,7 @@ function guessNext() {
         var entropyElement = document.getElementById('entropy');
         entropyElement.innerHTML = entropy.toFixed(2);
 
-        // estimate the expected entropy from each available letter
-        var exp_entropies = [];
-        for (var i = 0; i < availableChars.length; i++) {
-            exp_entropies.push(probeChar(availableChars[i], matchingWords, matchingCounts));
-        }
-        // get the letter with the minimum expected entropy
-        var min_entropy = Math.min(...exp_entropies);
-        var min_entropy_idx = exp_entropies.indexOf(min_entropy);
-        var nextGuess = availableChars[min_entropy_idx];
+        var nextGuess = chooseNextChar(availableChars, matchingWords, matchingCounts);
     }
 
     if (nextGuess === undefined) {
@@ -166,6 +158,39 @@ function guessNext() {
     if (nextGuessIdx !== -1) {
         availableChars.splice(nextGuessIdx, 1);
     }
+}
+
+function chooseNextChar(chars, words, counts) {
+    const ENTROPY_TOLERANCE = 1e-12;
+    const sum_total = counts.reduce((a, b) => a + b, 0);
+    var best_char;
+    var best_entropy = Infinity;
+    var best_hit_probability = -1;
+    var best_revealed_positions = -1;
+
+    for (var i = 0; i < chars.length; i++) {
+        var char = chars[i];
+        var expected_entropy = probeChar(char, words, counts);
+        var hit_probability = words.reduce((probability, word, index) => {
+            return probability + (word.includes(char) ? counts[index] / sum_total : 0);
+        }, 0);
+        var revealed_positions = words.reduce((positions, word, index) => {
+            var occurrences = word.split(char).length - 1;
+            return positions + occurrences * counts[index] / sum_total;
+        }, 0);
+
+        if (expected_entropy < best_entropy - ENTROPY_TOLERANCE ||
+            (Math.abs(expected_entropy - best_entropy) <= ENTROPY_TOLERANCE &&
+             (hit_probability > best_hit_probability ||
+              (hit_probability === best_hit_probability && revealed_positions > best_revealed_positions)))) {
+            best_char = char;
+            best_entropy = expected_entropy;
+            best_hit_probability = hit_probability;
+            best_revealed_positions = revealed_positions;
+        }
+    }
+
+    return best_char;
 }
 
 function probeChar(char, words, counts) {

@@ -138,6 +138,21 @@ async function run() {
     const expected = -(0.4 * Math.log2(0.4) + 0.6 * Math.log2(0.6));
     assert.ok(Math.abs(hangman.probeChar('z', ['able', 'acid'], [2, 3]) - expected) < 1e-12);
     assert.equal(hangman.probeChar('b', ['able', 'acid'], [2, 3]), 0);
+    assert.equal(
+        hangman.chooseNextChar(['i', 'y'], ['energy', 'energi'], [117451031, 90160]),
+        'y',
+        'equal-information guesses should prefer the one most likely to hit',
+    );
+    assert.equal(
+        hangman.chooseNextChar(['a', 'b'], ['aabb', 'bbaa'], [1, 1]),
+        'a',
+        'complete ties should remain deterministic',
+    );
+    assert.equal(
+        hangman.chooseNextChar(['a', 'b'], ['aabb', 'babc'], [1, 1]),
+        'b',
+        'equal-information, equal-hit guesses should prefer revealing more positions',
+    );
 
     for (let length = 4; length <= 18; length++) {
         const lines = file => fs.readFileSync(path.join(root, 'hangman/vocab', file), 'utf8').trim().split('\n');
@@ -166,12 +181,16 @@ async function run() {
         for (let position = 1; position <= 18; position++) {
             assert.equal(gameElement(`letter${position}`).style.display, position <= length ? 'inline-flex' : 'none');
         }
-        game.guessNext();
-        const letter = gameElement('guessed-letter').textContent;
-        assert.match(letter, /^[a-z]$/);
         const target = game.wordsArray[0];
+        const firstLetter = gameElement('guessed-letter').textContent;
         for (let position = 0; position < length; position++) {
-            if (target[position] === letter) game.replaceLetter(String(position + 1));
+            if (target[position] === firstLetter) game.replaceLetter(String(position + 1));
+        }
+        game.guessNext();
+        const nextLetter = gameElement('guessed-letter').textContent;
+        assert.match(nextLetter, /^[a-z]$/);
+        for (let position = 0; position < length; position++) {
+            if (target[position] === nextLetter) game.replaceLetter(String(position + 1));
         }
         assert.ok(game.getMatchingWords(game.getCurrentState())[0].includes(target));
     }
