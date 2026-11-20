@@ -104,6 +104,12 @@ header .site-title a:hover {
 }
 
 @media (min-width: 769px) {
+    body {
+        --desktop-zoom: 1.1;
+        zoom: var(--desktop-zoom);
+        min-height: calc(100vh / var(--desktop-zoom));
+    }
+
     body:not(.home-page) {
         --site-content-width: 740px;
     }
